@@ -14,23 +14,23 @@ $router = new Router\Router($_GET['url']);
 
 //Articles
 $router->get('/', function(){
-    $controller = new Controller\ArticlesController;
+    $controller = new Controller\PostsController;
     $controller->index();
 });
 $router->get('/posts', function(){
-    $controller = new Controller\ArticlesController;
+    $controller = new Controller\PostsController;
     $controller->index();
 });
 $router->post('/posts/:id', function($id){
-    $controller = new Controller\Admin\CommentairesController;
+    $controller = new Controller\Admin\CommentsController;
     $controller->addComments($id);
-    $controller = new Controller\ArticlesController;
+    $controller = new Controller\PostsController;
     $controller->show($id);
 });
 
 $router->get('/posts/:id', function($id){
 
-    $controller = new Controller\ArticlesController;
+    $controller = new Controller\PostsController;
     $controller->show($id);
 
 });
@@ -68,37 +68,37 @@ $router->post('/register', function(){
 
 //ADMIN
 $router->get('/admin/dash', function(){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->index();
 });
 
 $router->get('/admin/posts', function(){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->index();
 });
 
 $router->get('/admin/posts/:id', function($id){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->edit($id);
 });
 
 $router->post('/admin/posts/delete', function(){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->delete();
 });
 
 $router->post('/admin/posts/:id', function($id){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->edit($id);
 });
 
 $router->get('/admin/newpost', function(){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->add();
 });
 
 $router->post('/admin/newpost', function(){
-    $controller = new Controller\Admin\ArticlesController;
+    $controller = new Controller\Admin\PostsController;
     $controller->add();
 });
 
@@ -114,45 +114,14 @@ $router->post('/admin/users/:slug', function($slug){
 });
 
 $router->get('/admin/comments', function(){
-    $controller = new Controller\Admin\CommentairesController;
+    $controller = new Controller\Admin\CommentsController;
     $controller->index();
 });
 
 $router->post('/admin/comments/:slug', function($slug){
-    $controller = new Controller\Admin\CommentairesController;
+    $controller = new Controller\Admin\CommentsController;
     $controller->$slug();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $router->run();
