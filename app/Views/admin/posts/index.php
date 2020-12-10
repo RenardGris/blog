@@ -29,7 +29,7 @@
                             </a>
 
 
-                            <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/posts/delete" method="post" style="display:inline">
+                            <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/dash" method="post" style="display:inline">
                                 <input type="hidden" name="id" value="<?= $post->id; ?>">
                                 <button type="submit"
                                         class="btn btn-danger"
