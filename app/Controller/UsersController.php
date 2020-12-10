@@ -51,6 +51,8 @@ class UsersController extends AppController
         if (!empty($_POST)) {
 
             $result = $userTable->create([
+                'firstname' => htmlentities($_POST['firstname']),
+                'lastname' => htmlentities($_POST['lastname']),
                 'username' => htmlentities($_POST['username']),
                 'password' => sha1(htmlentities($_POST['password'])),
                 'email' => htmlentities($_POST['email']),
