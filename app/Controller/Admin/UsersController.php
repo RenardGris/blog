@@ -8,9 +8,9 @@ use App\App;
 class UsersController extends \App\Controller\Admin\AppController
 {
 
-    public function __constrcut()
+    public function __construct()
     {
-        parent::construct();
+        parent::__construct();
     }
 
     public function index()

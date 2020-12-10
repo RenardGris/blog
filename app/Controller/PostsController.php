@@ -5,9 +5,9 @@ namespace App\Controller;
 class PostsController extends AppController
 {
 
-    public function __constrcut()
+    public function __construct()
     {
-        parent::construct();
+        parent::__construct();
 
     }
 

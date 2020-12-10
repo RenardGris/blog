@@ -7,11 +7,9 @@ use Core\HTML\BootstrapForm;
 class CommentsController extends AppController
 {
 
-    public function __constrcut()
+    public function __construct()
     {
-        parent::construct();
-        // $this->loadModel('Articles');
-        // $this->loadModel('Categories');
+        parent::__construct();
 
     }
 

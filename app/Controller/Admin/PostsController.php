@@ -10,9 +10,9 @@ class PostsController extends \App\Controller\Admin\AppController
 
     private $categories;
 
-    public function __constrcut()
+    public function __construct()
     {
-        parent::construct();
+        parent::__construct();
     }
 
     public function index()
