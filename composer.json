@@ -1,0 +1,14 @@
+{
+    "name": "p5/blog",
+    "description": "Projet 5 formation PHP",
+    "autoload": {
+        "psr-4": {
+            
+            "Core\\" : "core/",
+            "App\\" : "app/"
+
+
+        }
+    },
+    "require": {}
+}
