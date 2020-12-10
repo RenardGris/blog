@@ -55,6 +55,7 @@ class CommentsController extends \App\Controller\Admin\AppController
                 'titre' => htmlentities($_POST['titre']),
                 'contenu' => htmlentities($_POST['contenu']),
                 'article_id' => htmlentities($postId),
+                'user_id' => htmlentities($_SESSION['auth'])
             ]);
 
         }

@@ -21,6 +21,7 @@
 
     <div class="card" id="commentsListing"> 
         <h5 class="card-title"><?= $commentaire->titre ?></h5>
+        <h5 class="card-title"><?= $commentaire->redacteur ?></h5>
         <p class="card-text"> <?= $commentaire->contenu ?></p>
     </div>
 

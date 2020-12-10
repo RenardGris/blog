@@ -19,8 +19,9 @@ class Comment extends Table
     public function lastByArticle($article_id)
     {
         return $this->query("
-        SELECT *
+        SELECT commentaires.* , users.username as redacteur
         FROM commentaires
+        LEFT JOIN users ON user_id = users.id
         WHERE article_id = ? AND valide = 1
         ORDER BY id DESC", [$article_id]);
     }
