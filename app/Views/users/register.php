@@ -8,9 +8,7 @@
 </form>
 
 <?php
-    if (isset($error)) {
-        echo '<div class="alert alert-danger" style="margin-top:20px"> ' . $error . '</div>';
-    } else if (isset($validate)) {
-        echo '<div class="alert alert-success" style="margin-top:20px"> ' . $validate . '</div>';
-    }
+if(isset($notification)){
+    require ROOT . 'app/Views/notification/show.php';
+}
 ?>

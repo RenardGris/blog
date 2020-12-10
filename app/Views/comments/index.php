@@ -10,7 +10,7 @@
   <div class="card-body">
 
   <div>
-  <?php isset($form) ? require 'add.php' : null; ?>
+  <?php isset($formComment) ? require 'add.php' : null; ?>
   </div>
 
 

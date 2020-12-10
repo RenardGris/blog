@@ -61,3 +61,9 @@
 
     </div>
 </div>
+
+<?php
+if(isset($notification)){
+    require ROOT . 'app/Views/notification/show.php';
+}
+?>

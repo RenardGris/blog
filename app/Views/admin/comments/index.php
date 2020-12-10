@@ -44,3 +44,9 @@
     </tbody>
 
 </table>
+
+<?php
+if($notification){
+    require ROOT . 'app/Views/notification/show.php';
+}
+?>

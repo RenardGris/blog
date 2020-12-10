@@ -10,7 +10,7 @@
 </form>
 
 <?php
-    if(isset($response) && $response === true) {
-        echo '<div class="alert alert-success" style="margin-top:20px">Modifications sauvegardées</div>';
-    }
+if(isset($notification)){
+    require ROOT . 'app/Views/notification/show.php';
+}
 ?>

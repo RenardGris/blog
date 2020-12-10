@@ -13,7 +13,7 @@ class UsersController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
-    public function index()
+    public function index($notification = null)
     {
         $unvalidateUsers = $this->loadModel('User')->unvalideUsers();
         $users = $this->loadModel('User')->valideUsers();
@@ -22,7 +22,7 @@ class UsersController extends \App\Controller\Admin\AppController
             $form[$user->id] = new BootstrapForm($user);
         }
 
-        $this->render('admin.users.index', compact('unvalidateUsers', 'users', 'form'));
+        $this->render('admin.users.index', compact('unvalidateUsers', 'users', 'form', 'notification'));
     }
 
     public function validate()
@@ -33,7 +33,12 @@ class UsersController extends \App\Controller\Admin\AppController
             $result = $userTable->update($_POST['id'], [
                 'validate' => 1,
             ]);
-            return $this->index();
+            
+            $success = "Utilisateur validé avec succès";
+            $error = "Erreur lors de la validation de l'utilisateur";
+            $notification = $this->notify($result, $success, $error);
+
+            return $this->index($notification);
         }
 
     }
@@ -42,9 +47,14 @@ class UsersController extends \App\Controller\Admin\AppController
     {
         $userTable = $this->loadModel('User');
         if (!empty($_POST)) {
-            $userTable->delete($_POST['id']);
+            $result = $userTable->delete($_POST['id']);
+
+            $success = "Utilisateur supprimé avec succès";
+            $error = "Erreur lors de la suppression de l'utilisateur";
+            $notification = $this->notify($result, $success, $error);
+
+            return $this->index($notification);
         }
-        return $this->index();
 
     }
 
@@ -55,7 +65,12 @@ class UsersController extends \App\Controller\Admin\AppController
             $result = $userTable->update($_POST['id'], [
                 'role' => htmlentities($_POST['role']),
             ]);
-            return $this->index();
+
+            $success = "Changement du role utilisateur validé";
+            $error = "Erreur lors du changement de role utilisateur";
+            $notification = $this->notify($result, $success, $error);
+
+            return $this->index($notification);
         }
     }
 

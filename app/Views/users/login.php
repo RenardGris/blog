@@ -8,9 +8,9 @@
 
 
 <?php
-    if(isset($error)) {
-        echo '<div class="alert alert-danger" style="margin-top:20px"> '.$error.'</div>';        
-    }    
+if(isset($notification)){
+    require ROOT . 'app/Views/notification/show.php';
+} 
 ?>
 
 

@@ -14,10 +14,10 @@ class CommentsController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
-    public function index()
+    public function index($notification = null)
     {
         $commentaires = $this->loadModel('Comment')->unvalideComments();
-        $this->render('admin.comments.index', compact('commentaires'));
+        $this->render('admin.comments.index', compact('commentaires', 'notification'));
     }
 
     public function validate()
@@ -28,7 +28,12 @@ class CommentsController extends \App\Controller\Admin\AppController
             $result = $commentTable->update($_POST['id'], [
                 'valide' => 1,
             ]);
-            return $this->index();
+
+            $success = "Commentaire validé avec succès";
+            $error = "Erreur lors de la validation du commentaire";
+            $notification = $this->notify($result, $success, $error);
+
+            return $this->index($notification);
         }
 
     }
@@ -38,9 +43,13 @@ class CommentsController extends \App\Controller\Admin\AppController
         $commentTable = $this->loadModel('Comment');
         if (!empty($_POST)) {
 
-            $commentTable->delete($_POST['id']);
-            return $this->index();
-
+            $result = $commentTable->delete($_POST['id']);
+            
+            $success = "Commentaire supprimé avec succès";
+            $error = "Erreur lors de la suppression du commentaire";
+            $notification = $this->notify($result, $success, $error);
+            
+            return $this->index($notification);
         }
 
     }
@@ -51,18 +60,35 @@ class CommentsController extends \App\Controller\Admin\AppController
 
         if (!empty($_POST)) {
 
-            $result = $commentaireTable->create([
-                'titre' => htmlentities($_POST['titre']),
-                'contenu' => htmlentities($_POST['contenu']),
-                'article_id' => htmlentities($postId),
-                'user_id' => htmlentities($_SESSION['auth'])
-            ]);
+            if(!empty($_POST['titre']) && !empty($_POST['contenu']) ){
 
+                $result = $commentaireTable->create([
+                    'titre' => htmlentities($_POST['titre']),
+                    'contenu' => htmlentities($_POST['contenu']),
+                    'article_id' => htmlentities($postId),
+                    'user_id' => htmlentities($_SESSION['auth'])
+                ]);
+
+            } else {
+                $result = null;
+            }
+            
+            $success = "Commentaire en cours de vérification";
+            $error = "Erreur lors de l'ajout du commentaire";
+            $notification = $this->notify($result, $success, $error);
+           
         }
 
         $form = new BootstrapForm($_POST);
 
-        return $form;
+        $ressources = [];
+        $ressources[0] = $form;
+
+        isset($notification) 
+            ? $ressources[1] = $notification
+            : $ressources;
+
+        return $ressources;
     }
 
 }
