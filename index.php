@@ -123,6 +123,15 @@ $router->post('/admin/comments/:slug', function($slug){
     $controller->$slug();
 });
 
+$router->get('/unauthorized', function(){
+    $controller = new Controller\ErrorController;
+    $controller->index('Accès non authorisé');
+});
+
+$router->get('/notfound', function(){
+    $controller = new Controller\ErrorController;
+    $controller->index("Désolé cette page n'a pas été trouvée");
+});
 
 $router->run();
 
