@@ -15,12 +15,9 @@ class AppController extends \App\Controller\AppController
         $app = App::getInstance();
         $auth = new Auth($app->getDb());
 
-        if (!$auth->logged()) {
-            $this->forbidden();
-        }
-
-        if(!$auth->authorized($_SESSION['auth'])) {
-            $this->unauthorized();
+        if (!$auth->logged() || !$auth->authorized($_SESSION['auth'])) {
+            header('Location: ' . $app->getBaseUrl() . 'unauthorized');
+            exit();
         }
 
     }
