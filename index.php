@@ -133,7 +133,12 @@ $router->get('/notfound', function(){
     $controller->index("Désolé cette page n'a pas été trouvée");
 });
 
-$router->run();
+
+$run = $router->run();
+
+if($run === false){
+    header('Location:' . App::getInstance()->getBaseUrl() . 'notfound');
+}
 
 
 
