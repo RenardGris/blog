@@ -33,7 +33,7 @@ class Router {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         if(!isset($this->routes[$requestMethod])){
-            throw new RouterException('Request Method not exist');
+            return false;
         } 
 
         foreach($this->routes[$requestMethod] as $route){
@@ -43,7 +43,8 @@ class Router {
             }
 
         }
-        throw new RouterException('No matching routes');
+        return false;
+
     }
 
 }
