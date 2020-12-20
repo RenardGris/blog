@@ -19,7 +19,8 @@
                 <td>
 
                     <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/comments/validate" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $comment->id; ?>">
+                        <input type="hidden" name="id" value="<?= $comment->id; ?>" />
+                        <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
                         <button type="submit"
                                 class="btn btn-primary"
                         >
@@ -29,7 +30,8 @@
 
 
                     <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/comments/delete" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $comment->id; ?>">
+                        <input type="hidden" name="id" value="<?= $comment->id; ?>" />
+                        <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
                         <button type="submit"
                                 class="btn btn-danger"
                         >

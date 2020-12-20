@@ -8,6 +8,7 @@ if(isset($_SESSION['auth'])){
 <form method="post">
     <?= $form->input('titre', 'titre de l\'article'); ?>
     <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
+    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
     <button class="btn btn-primary">Commenter</button>
 </form>
 

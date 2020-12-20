@@ -6,6 +6,9 @@
     <?= $form->input('chapo', 'Chapo', ['type' => 'textarea']); ?>
 
     <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
+
+    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+
     <button class="btn btn-primary">Save</button>
 </form>
 
