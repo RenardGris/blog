@@ -26,7 +26,11 @@ class MysqlDb extends Database
 
         if ($this->pdo === null) {
             //$pdo = new PDO('mysql:dbname=blog;host=localhost', 'root', '');
-            $pdo = new PDO('mysql:dbname=' . $this->dbName . ';host=' . $this->dbHost, $this->dbUser, $this->dbPass);
+            $option = array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+                PDO::ATTR_EMULATE_PREPARES => false
+            );
+            $pdo = new PDO('mysql:dbname=' . $this->dbName . ';host=' . $this->dbHost, $this->dbUser, $this->dbPass, $option);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         }
