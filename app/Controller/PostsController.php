@@ -37,7 +37,7 @@ class PostsController extends AppController
         if(isset($_SESSION['auth'])){
             $commentController = new Admin\CommentsController();
             $formComment = $commentController->addComments($postId);
-
+            $_POST = [];
             $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
 
         } else {
