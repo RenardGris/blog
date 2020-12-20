@@ -46,6 +46,7 @@ class Auth
 
         if ($user) {
             if ($user->password === sha1($password) && $user->validate == 1) {
+                session_regenerate_id(true);
                 $_SESSION['auth'] = $user->id;
                 $_SESSION['token'] = $this->getCSRFToken();
                 return true;
