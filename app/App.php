@@ -52,6 +52,10 @@ class App
 
     public static function load()
     {
+        ini_set( 'session.use_only_cookies',TRUE );
+        ini_set( 'session.cookie_lifetime', 900 );
+        ini_set( 'session.cookie_httponly', TRUE );
+        ini_set( 'session.cookie_secure', true );
         session_start();
     }
 
