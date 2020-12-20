@@ -25,7 +25,10 @@ class CommentsController extends \App\Controller\Admin\AppController
 
         $commentTable = $this->loadModel('Comment');
         if (!empty($_POST)) {
-            $result = $commentTable->update($_POST['id'], [
+
+            $data = $this->inputEscaping();
+
+            $result = $commentTable->update($data['id'], [
                 'valide' => 1,
             ]);
 
@@ -43,7 +46,9 @@ class CommentsController extends \App\Controller\Admin\AppController
         $commentTable = $this->loadModel('Comment');
         if (!empty($_POST)) {
 
-            $result = $commentTable->delete($_POST['id']);
+            $data = $this->inputEscaping();
+
+            $result = $commentTable->delete($data['id']);
             
             $success = "Commentaire supprimé avec succès";
             $error = "Erreur lors de la suppression du commentaire";
@@ -60,13 +65,15 @@ class CommentsController extends \App\Controller\Admin\AppController
 
         if (!empty($_POST)) {
 
-            if(!empty($_POST['titre']) && !empty($_POST['contenu']) ){
+            $data = $this->inputEscaping();
+
+            if(!empty($data['titre']) && !empty($data['contenu']) ){
 
                 $result = $commentaireTable->create([
-                    'titre' => htmlentities($_POST['titre']),
-                    'contenu' => htmlentities($_POST['contenu']),
-                    'article_id' => htmlentities($postId),
-                    'user_id' => htmlentities($_SESSION['auth'])
+                    'titre' => $data['titre'],
+                    'contenu' => $data['contenu'],
+                    'article_id' => $postId,
+                    'user_id' => $_SESSION['auth']
                 ]);
 
             } else {

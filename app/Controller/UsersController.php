@@ -17,7 +17,9 @@ class UsersController extends AppController
         if (!empty($_POST)) {
             $auth = new Auth(App::getInstance()->getDb());
 
-            if ($auth->login(htmlentities($_POST['username']), htmlentities($_POST['password']))) {
+            $data = $this->inputEscaping();
+
+            if ($auth->login($data['username'], $data['password'])) {
                 header('Location: admin/dash');
             } else {
                 $error = "identifiant Incorrect";
@@ -53,14 +55,16 @@ class UsersController extends AppController
 
         if (!empty($_POST)) {
 
-            if(!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['email']) ){
+            $data = $this->inputEscaping();
+
+            if(!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['username']) && !empty($data['password']) && !empty($data['email']) ){
 
                 $result = $userTable->create([
-                    'firstname' => htmlentities($_POST['firstname']),
-                    'lastname' => htmlentities($_POST['lastname']),
-                    'username' => htmlentities($_POST['username']),
-                    'password' => sha1(htmlentities($_POST['password'])),
-                    'email' => htmlentities($_POST['email']),
+                    'firstname' => $data['firstname'],
+                    'lastname' => $data['lastname'],
+                    'username' => $data['username'],
+                    'password' => sha1($data['password']),
+                    'email' => $data['email'],
                     'validate' => 0,
                 ]);
 
