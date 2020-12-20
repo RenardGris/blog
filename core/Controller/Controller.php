@@ -44,4 +44,9 @@ class Controller
         return $answer;
     }
 
+
+    public function checkTokenCSRF(){
+        return Security::csrf();
+    }
+
 }
