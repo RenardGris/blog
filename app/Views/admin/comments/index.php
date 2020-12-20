@@ -48,7 +48,7 @@
 </table>
 
 <?php
-if($notification){
+if(isset($notification)){
     require ROOT . 'app/Views/notification/show.php';
 }
 ?>
