@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
 use App\App;
 
@@ -40,7 +41,7 @@ class PostsController extends \App\Controller\Admin\AppController
                     'titre' => $data['titre'],
                     'chapo' => $data['chapo'],
                     'contenu' => $data['contenu'],
-                    'autor' => $_SESSION['auth'],
+                    'autor' => Session::get('auth'),
                     'date' => date('Y-m-d H:i:s'),
 
                     'categorie_id' => 1

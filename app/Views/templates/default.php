@@ -47,11 +47,11 @@
     <footer class="page-footer font-small bg-dark" style="height:80px">
       <div class="footer-copyright text-center py-3">
       <?php 
-        if(isset($_SESSION['auth']))
+        if(Core\Auth\Session::get('auth') !== null)
         {
       ?>
         <form action="<?=App\App::getInstance()->getBaseUrl();?>logout" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $_SESSION['auth']; ?>">
+                        <input type="hidden" name="id" value="<?= Core\Auth\Session::get('auth'); ?>">
                         <button type="submit" class="btn btn-danger"> logout</button>
         </form>
         <a href="<?=App\App::getInstance()->getBaseUrl();?>admin/dash">Admin</a>

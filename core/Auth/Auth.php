@@ -47,8 +47,8 @@ class Auth
         if ($user) {
             if ($user->password === sha1($password) && $user->validate == 1) {
                 session_regenerate_id(true);
-                $_SESSION['auth'] = $user->id;
-                $_SESSION['token'] = $this->getCSRFToken();
+                Session::put('auth', $user->id);
+                Session::put('token', $this->getCSRFToken());
                 return true;
             }
         }
@@ -64,7 +64,7 @@ class Auth
      */
     public function logged()
     {
-        return isset($_SESSION['auth']);
+        return Session::get('auth');
     }
 
     /**

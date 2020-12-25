@@ -1,6 +1,6 @@
 <?php 
 
-if(isset($_SESSION['auth'])){
+if(Core\Auth\Session::get('auth') !== null){
     $form = $formComment[0];
 
 ?>
@@ -8,7 +8,7 @@ if(isset($_SESSION['auth'])){
 <form method="post">
     <?= $form->input('titre', 'titre de l\'article'); ?>
     <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
-    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+    <input type="hidden" name="token" value="<?= Core\Auth\Session::get('token'); ?>" />
     <button class="btn btn-primary">Commenter</button>
 </form>
 

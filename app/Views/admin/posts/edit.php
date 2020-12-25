@@ -10,7 +10,7 @@
 
     <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
 
-    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+    <input type="hidden" name="token" value="<?= Core\Auth\Session::get('token'); ?>" />
 
     <button class="btn btn-primary">Save</button>
 </form>

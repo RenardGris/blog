@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Core\Auth\Session;
+
 class PostsController extends AppController
 {
 
@@ -34,7 +36,7 @@ class PostsController extends AppController
         $commentary = new CommentsController();
         $commentaires = $commentary->indexForArticle($postId);
 
-        if(isset($_SESSION['auth'])){
+        if(Session::get('auth') !== null){
             $commentController = new Admin\CommentsController();
             $formComment = $commentController->addComments($postId);
             $_POST = [];

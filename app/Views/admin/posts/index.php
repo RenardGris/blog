@@ -31,7 +31,7 @@
 
                             <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/dash" method="post" style="display:inline">
                                 <input type="hidden" name="id" value="<?= $post->id; ?>" />
-                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                                <input type="hidden" name="token" value="<?= Core\Auth\Session::get('token'); ?>" />
                                 <button type="submit"
                                         class="btn btn-danger"
                                 >

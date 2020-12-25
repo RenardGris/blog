@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Core\Auth\Auth;
+use Core\Auth\Session;
 use App\App;
 use \Core\HTML\BootstrapForm;
 
@@ -38,7 +39,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        if (!empty($_SESSION['auth'])) {
+        if (Session::get('auth') !== null) {
             session_destroy();
             header('Location: ./ ');
         }

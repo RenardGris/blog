@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\App;
+use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
 use App\Controller\ArticlesController;
 
@@ -73,7 +74,7 @@ class CommentsController extends \App\Controller\Admin\AppController
                     'titre' => $data['titre'],
                     'contenu' => $data['contenu'],
                     'article_id' => $postId,
-                    'user_id' => $_SESSION['auth']
+                    'user_id' => Session::get('auth')
                 ]);
 
             } else {
