@@ -18,7 +18,6 @@ class AppController extends \App\Controller\AppController
 
         if (!$auth->logged() || !$auth->authorized(Session::get('auth'))) {
             header('Location: ' . $app->getBaseUrl() . 'unauthorized');
-            exit();
         }
 
         $this->hasToken();
