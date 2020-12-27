@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use App\App;
 use Core\HTML\BootstrapAlert;
 use Core\Security\Security;
 
@@ -24,7 +25,7 @@ class Controller
     protected function notFound()
     {
         header("HTTP/1.0 404 Not Found");
-        header('location:index.php');
+        header('location:'. App::getInstance()->getBaseUrl() .'notfound');
 
     }
 
