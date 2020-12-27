@@ -19,13 +19,11 @@ class UsersController extends AppController
         if (!empty($data)) {
             $auth = new Auth(App::getInstance()->getDb());
 
-            $data = $this->inputEscaping();
+            $error = "identifiant Incorrect";
+            $notification = $this->notify(null, null, $error);
 
             if ($auth->login($data['username'], $data['password'])) {
                 header('Location: admin/dash');
-            } else {
-                $error = "identifiant Incorrect";
-                $notification = $this->notify(null, null, $error);
             }
 
         }
@@ -57,6 +55,7 @@ class UsersController extends AppController
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
+            $result = null;
             if(!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['username']) && !empty($data['password']) && !empty($data['email']) ){
 
                 $result = $userTable->create([
@@ -68,8 +67,6 @@ class UsersController extends AppController
                     'validate' => 0,
                 ]);
 
-            } else {
-                $result = null;
             }
 
             $success = "Votre demande a bien été reçu et sera validée prochainement";

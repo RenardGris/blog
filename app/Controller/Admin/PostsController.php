@@ -32,7 +32,7 @@ class PostsController extends \App\Controller\Admin\AppController
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
-
+            $result = null;
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) ) {
 
                 $result = $postTable->create([
@@ -45,9 +45,6 @@ class PostsController extends \App\Controller\Admin\AppController
                     'categorie_id' => 1
     
                 ]);
-
-            } else {
-                $result = null;
             }
 
             $success = "Article ajouté avec succès";
@@ -80,7 +77,7 @@ class PostsController extends \App\Controller\Admin\AppController
 
         $data = $this->inputEscaping();
         if (!empty($data)) {
-
+            $result = null;
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor']) ) {
 
                 $result = $postTable->update(htmlentities($id), [
@@ -90,9 +87,6 @@ class PostsController extends \App\Controller\Admin\AppController
                     'autor' => $data['autor'],
                     'date' => date('Y-m-d H:i:s')
                 ]);
-
-            } else {
-                $result = null;
             }
 
             $success = "Article modifié avec succès";

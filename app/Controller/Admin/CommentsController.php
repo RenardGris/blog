@@ -65,7 +65,7 @@ class CommentsController extends \App\Controller\Admin\AppController
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
-
+            $result = null;
             if(!empty($data['titre']) && !empty($data['contenu']) ){
 
                 $result = $commentaireTable->create([
@@ -74,9 +74,6 @@ class CommentsController extends \App\Controller\Admin\AppController
                     'article_id' => $postId,
                     'user_id' => Session::get('auth')
                 ]);
-
-            } else {
-                $result = null;
             }
             
             $success = "Commentaire en cours de vérification";
