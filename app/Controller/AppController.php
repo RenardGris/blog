@@ -25,7 +25,6 @@ class AppController extends Controller
         if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING)){
             if($this->checkTokenCSRF() !== true) {
                 header('Location: ' . App::getInstance()->getBaseUrl() . 'unauthorized');
-                exit();
             }
         }
     }
