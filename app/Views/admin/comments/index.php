@@ -47,8 +47,4 @@
 
 </table>
 
-<?php
-if(isset($notification)){
-    require ROOT . 'app/Views/notification/show.php';
-}
-?>
+<?= !empty($notification) ? filter_var($notification) : null ?>

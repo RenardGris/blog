@@ -2,6 +2,9 @@
 
 if(Core\Auth\Session::get('auth') !== null){
     $form = $formComment[0];
+    if(isset($formComment[1]) === true) {
+        $notification = $formComment[1];
+    }
 
 ?>
 
@@ -16,11 +19,4 @@ if(Core\Auth\Session::get('auth') !== null){
 }
 ?>
 
-<?php
-    if(isset($formComment[1]) === true) {
-        $notification = $formComment[1];
-        if(isset($notification)){
-            require ROOT . 'app/Views/notification/show.php';
-        }
-    }
-?>
+<?= !empty($notification) ? filter_var($notification) : null ?>
