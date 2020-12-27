@@ -19,8 +19,7 @@ class PostsController extends AppController
     {
 
         $posts = $this->loadModel('Post')->last();
-        $categories = $this->loadModel('Category')->all();
-        $this->render('posts.index', compact('posts', 'categories'));
+        $this->render('posts.index', compact('posts'));
 
     }
 
@@ -43,25 +42,6 @@ class PostsController extends AppController
         } else {
            $this->render('posts.show', compact('article', 'commentaires')); 
         }
-
-    }
-
-    //affiche tous les articles de la catégorie selectionnée
-    public function categorie()
-    {
-
-        $categoryId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-        $categorie = $this->loadModel('Category')->find($categoryId);
-
-        if ($categorie === false) {
-            $this->notFound();
-        }
-
-        $articles = $this->loadModel('Post')->lastByCategorie($categoryId);
-
-        $categories = $this->loadModel('Category')->all();
-
-        $this->render('posts.categorie', compact('articles', 'categories', 'categorie'));
 
     }
 

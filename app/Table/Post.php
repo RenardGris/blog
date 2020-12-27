@@ -43,21 +43,4 @@ class Post extends Table
 
     }
 
-    /**
-     *
-     * Recupere les derniers articles d'une categorie (via son id)
-     * @param $categorie_id int
-     * @return array
-     *
-     */
-    public function lastByCategorie($categorie_id)
-    {
-        return $this->query("
-        SELECT articles.id, articles.titre, articles.contenu, articles.date, categories.titre as categorie
-        FROM articles
-        LEFT JOIN categories ON categorie_id = categories.id
-        WHERE articles.categorie_id = ?
-        ORDER BY articles.date DESC", [$categorie_id]);
-    }
-
 }
