@@ -1,12 +1,12 @@
 <div>
-<h1><?= $article->titre; ?></h1>
+<h1><?= filter_var($article->titre, FILTER_SANITIZE_STRING); ?></h1>
 
-<p><em><?= $article->redacteur; ?></em></p>
-<p><em><?= $article->date; ?></em></p>
+<p><em><?= filter_var($article->redacteur, FILTER_SANITIZE_STRING); ?></em></p>
+<p><em><?= filter_var($article->date, FILTER_SANITIZE_STRING); ?></em></p>
 
-<p><?= $article->chapo; ?></p>
+<p><?= filter_var($article->chapo, FILTER_SANITIZE_STRING); ?></p>
 
-<p><?= $article->contenu; ?></p>
+<p><?= filter_var($article->contenu, FILTER_SANITIZE_STRING); ?></p>
 </div>
 
 <div>

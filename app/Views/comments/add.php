@@ -6,9 +6,9 @@ if(Core\Auth\Session::get('auth') !== null){
 ?>
 
 <form method="post">
-    <?= $form->input('titre', 'titre de l\'article'); ?>
-    <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
-    <input type="hidden" name="token" value="<?= Core\Auth\Session::get('token'); ?>" />
+    <?= filter_var($form->input('titre', 'titre de l\'article')); ?>
+    <?= filter_var($form->input('contenu', 'Contenu', ['type' => 'textarea'])); ?>
+    <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
     <button class="btn btn-primary">Commenter</button>
 </form>
 

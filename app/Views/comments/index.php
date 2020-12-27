@@ -20,9 +20,9 @@
     ?>
 
     <div class="card" id="commentsListing"> 
-        <h5 class="card-title"><?= $commentaire->titre ?></h5>
-        <h5 class="card-title"><?= $commentaire->redacteur ?></h5>
-        <p class="card-text"> <?= $commentaire->contenu ?></p>
+        <h5 class="card-title"><?= filter_var($commentaire->titre, FILTER_SANITIZE_STRING) ?></h5>
+        <h5 class="card-title"><?= filter_var($commentaire->redacteur, FILTER_SANITIZE_STRING) ?></h5>
+        <p class="card-text"> <?= filter_var($commentaire->contenu,FILTER_SANITIZE_STRING) ?></p>
     </div>
 
     <?php
