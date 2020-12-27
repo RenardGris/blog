@@ -14,8 +14,9 @@ class UsersController extends AppController
     {
 
         $error = null;
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
+        if (!empty($data)) {
             $auth = new Auth(App::getInstance()->getDb());
 
             $data = $this->inputEscaping();
@@ -29,7 +30,7 @@ class UsersController extends AppController
 
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         isset($notification) 
             ? $this->render('users.login', compact('form', 'notification')) 
@@ -53,11 +54,9 @@ class UsersController extends AppController
         $validate = null;
 
         $userTable = $this->loadModel('User');
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
-
+        if (!empty($data)) {
             if(!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['username']) && !empty($data['password']) && !empty($data['email']) ){
 
                 $result = $userTable->create([
@@ -79,7 +78,7 @@ class UsersController extends AppController
 
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         if(isset($notification)){
             $this->render('users.register', compact('form', 'notification'));

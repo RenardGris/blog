@@ -25,9 +25,8 @@ class CommentsController extends \App\Controller\Admin\AppController
     {
 
         $commentTable = $this->loadModel('Comment');
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (!empty($data['id'])) {
 
             $result = $commentTable->update($data['id'], [
                 'valide' => 1,
@@ -45,9 +44,8 @@ class CommentsController extends \App\Controller\Admin\AppController
     public function delete()
     {
         $commentTable = $this->loadModel('Comment');
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (!empty($data['id'])) {
 
             $result = $commentTable->delete($data['id']);
             
@@ -64,9 +62,9 @@ class CommentsController extends \App\Controller\Admin\AppController
     {
         $commentaireTable = $this->loadModel('Comment');
 
-        if (!empty($_POST)) {
+        $data = $this->inputEscaping();
 
-            $data = $this->inputEscaping();
+        if (!empty($data)) {
 
             if(!empty($data['titre']) && !empty($data['contenu']) ){
 
@@ -87,7 +85,7 @@ class CommentsController extends \App\Controller\Admin\AppController
            
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         $ressources = [];
         $ressources[0] = $form;

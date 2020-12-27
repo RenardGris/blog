@@ -29,11 +29,9 @@ class PostsController extends \App\Controller\Admin\AppController
     {
         
         $postTable = $this->loadModel('Post');
-        $categoriesTable = $this->loadModel('Category');
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
+        if (!empty($data)) {
 
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) ) {
 
@@ -62,7 +60,7 @@ class PostsController extends \App\Controller\Admin\AppController
 
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         isset($notification) 
             ? $this->render('admin.posts.new', compact('form', 'notification'))
@@ -79,12 +77,9 @@ class PostsController extends \App\Controller\Admin\AppController
         if(!$postTable->find(htmlentities($id))){
             $this->notFound();
         }
-           
-        $response = false;
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (!empty($data)) {
 
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor']) ) {
 
@@ -122,9 +117,9 @@ class PostsController extends \App\Controller\Admin\AppController
     public function delete()
     {
         $postTable = $this->loadModel('Post');
-        if (!empty($_POST)) {
 
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (isset($data['id'])) {
 
             $result = $postTable->delete($data['id']);
            

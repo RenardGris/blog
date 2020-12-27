@@ -29,9 +29,8 @@ class UsersController extends \App\Controller\Admin\AppController
     {
 
         $userTable = $this->loadModel('User');
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (isset($data['id'])) {
 
             $result = $userTable->update($data['id'], [
                 'validate' => 1,
@@ -49,9 +48,9 @@ class UsersController extends \App\Controller\Admin\AppController
     public function delete()
     {
         $userTable = $this->loadModel('User');
-        if (!empty($_POST)) {
+        $data = $this->inputEscaping();
 
-            $data = $this->inputEscaping();
+        if (isset($data['id'])) {
 
             $result = $userTable->delete($data['id']);
 
@@ -67,9 +66,9 @@ class UsersController extends \App\Controller\Admin\AppController
     public function changeRole()
     {
         $userTable = $this->loadModel('User');
-        if (!empty($_POST)) {
+        $data = $this->inputEscaping();
 
-            $data = $this->inputEscaping();
+        if (!empty($data)) {
 
             $result = $userTable->update($data['id'], [
                 'role' => $data['role'],
