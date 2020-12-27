@@ -94,7 +94,7 @@ class Auth
             $acessRight = 3;
         }
 
-        $ressource = explode( '/', htmlentities($_GET['url']));
+        $ressource = explode( '/', filter_input(INPUT_GET, 'url'));
 
         if($ressource[0] === 'admin'){
             $ressource = $ressource[1];

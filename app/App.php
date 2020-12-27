@@ -62,7 +62,7 @@ class App
     public function getBaseUrl()
     {
         if($this->linkPath === null){
-            $path = explode('index.php', $_SERVER['PHP_SELF']);
+            $path = explode('index.php', filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL));
             $this->linkPath = $path[0];
 
         }

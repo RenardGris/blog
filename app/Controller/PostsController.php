@@ -52,13 +52,14 @@ class PostsController extends AppController
     public function categorie()
     {
 
-        $categorie = $this->loadModel('Category')->find($_GET['id']);
+        $categoryId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $categorie = $this->loadModel('Category')->find($categoryId);
 
         if ($categorie === false) {
             $this->notFound();
         }
 
-        $articles = $this->loadModel('Post')->lastByCategorie($_GET['id']);
+        $articles = $this->loadModel('Post')->lastByCategorie($categoryId);
 
         $categories = $this->loadModel('Category')->all();
 

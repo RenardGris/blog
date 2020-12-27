@@ -2,6 +2,8 @@
 
 namespace Core\Security;
 
+use Core\Auth\Session;
+
 class Security
 {
 
@@ -21,7 +23,7 @@ class Security
 
     public static function csrf()
     {
-        if($_POST['token'] === $_SESSION['token']){
+        if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING) === filter_var(Session::get('token'), FILTER_SANITIZE_STRING )){
             return true;
         }
         return false;

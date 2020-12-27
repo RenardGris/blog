@@ -1,6 +1,7 @@
 <?php
 //define('ROOT', dirname(__DIR__));
-$path = explode('index.php', realpath('index.php'));
+$path = filter_input(INPUT_SERVER, 'SCRIPT_FILENAME');
+$path = explode('index.php', $path);
 define('ROOT', $path[0]);
 
 require 'vendor/autoload.php';
@@ -10,7 +11,7 @@ use App\App;
 
 App::load();
 
-$router = new Router\Router($_GET['url']);
+$router = new Router\Router(filter_input(INPUT_GET, 'url'));
 
 //Articles
 $router->get('/', function(){
