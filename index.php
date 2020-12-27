@@ -25,8 +25,6 @@ $router->get('/posts', function(){
 $router->post('/posts/:id', function($id){
     $controller = new Controller\Admin\CommentsController;
     $controller->addComments($id);
-    $controller = new Controller\PostsController;
-    $controller->show($id);
 });
 
 $router->get('/posts/:id', function($id){

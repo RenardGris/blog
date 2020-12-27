@@ -75,7 +75,7 @@ class CommentsController extends \App\Controller\Admin\AppController
                     'user_id' => Session::get('auth')
                 ]);
             }
-            
+
             $success = "Commentaire en cours de vérification";
             $error = "Erreur lors de l'ajout du commentaire";
             $notification = $this->notify($result, $success, $error);
@@ -91,7 +91,12 @@ class CommentsController extends \App\Controller\Admin\AppController
             ? $ressources[1] = $notification
             : $ressources;
 
-        return $ressources;
+
+        $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
+        $comment = new \App\Controller\CommentsController();
+        $commentaires = $comment->indexForArticle($postId);
+        $formComment = $ressources;
+        $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
     }
 
 }

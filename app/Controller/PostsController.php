@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Core\Auth\Session;
+use Core\HTML\BootstrapForm;
 
 class PostsController extends AppController
 {
@@ -37,11 +38,8 @@ class PostsController extends AppController
         $commentaires = $commentary->indexForArticle($postId);
 
         if(Session::get('auth') !== null){
-            $commentController = new Admin\CommentsController();
-            $formComment = $commentController->addComments($postId);
-            $_POST = [];
+            $formComment = array(new BootstrapForm());
             $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
-
         } else {
            $this->render('posts.show', compact('article', 'commentaires')); 
         }
