@@ -48,9 +48,6 @@ class UsersController extends AppController
     public function register()
     {
 
-        $error = null;
-        $validate = null;
-
         $userTable = $this->loadModel('User');
         $data = $this->inputEscaping();
 

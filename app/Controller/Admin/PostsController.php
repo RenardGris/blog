@@ -9,7 +9,6 @@ use App\App;
 class PostsController extends \App\Controller\Admin\AppController
 {
 
-    private $categories;
 
     public function __construct()
     {
@@ -43,17 +42,13 @@ class PostsController extends \App\Controller\Admin\AppController
                     'date' => date('Y-m-d H:i:s'),
 
                     'categorie_id' => 1
-    
+
                 ]);
             }
 
             $success = "Article ajouté avec succès";
             $error = "Erreur lors de l'ajout de l'article";
             $notification = $this->notify($result, $success, $error);
-
-            if ($result) {
-                $id = App::getInstance()->getDb()->lastInsertId();
-            }
 
         }
 

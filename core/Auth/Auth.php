@@ -18,15 +18,6 @@ class Auth
         $this->db = $db;
     }
 
-
-    /**
-     * @return int|false
-     */
-    public function getAuthUserId()
-    {
-        return $this->logged() ? $_SESSION['auth'] : false;
-    }
-
     /**
      *
      * @params $username
