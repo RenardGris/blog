@@ -11,21 +11,20 @@ class Comment extends Table
 
     /**
      *
-     * List all comments from the post with id = $article_id
+     * List all comments from the post with id = $postId
      *
-     * @param $article_id int
+     * @param $postId int
      *
      * @return array
-     *
      */
-    public function lastByArticle($article_id)
+    public function lastByPost($postId)
     {
         return $this->query("
         SELECT commentaires.* , users.username as redacteur
         FROM commentaires
         LEFT JOIN users ON user_id = users.id
         WHERE article_id = ? AND valide = 1
-        ORDER BY id DESC", [$article_id]);
+        ORDER BY id DESC", [$postId]);
     }
 
     /**
@@ -35,7 +34,7 @@ class Comment extends Table
      * @return array
      *
      */
-    public function unvalideComments()
+    public function unvalidComments()
     {
         return $this->query("
         SELECT *

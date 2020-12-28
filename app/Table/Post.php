@@ -32,7 +32,7 @@ class Post extends Table
      * @param int $id
      * @return array
      */
-    public function findWithCategorie($id)
+    public function findWithComments(int $id)
     {
         return $this->query("
             SELECT articles.* , users.username as redacteur

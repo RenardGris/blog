@@ -21,12 +21,10 @@ class CommentsController extends AppController
      * @param int $postId
      * @return array
      */
-    public function indexForArticle($postId)
+    public function indexForArticle(int $postId): array
     {
 
-        $commentaires = $this->loadModel('Comment')->lastByArticle(htmlentities($postId));
-
-        return $commentaires;
+        return $this->loadModel('Comment')->lastByPost(htmlentities($postId));
     }
 
 }

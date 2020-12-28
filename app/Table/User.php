@@ -15,7 +15,7 @@ class User extends Table
      *
      * @return array
      */
-    public function unvalideUsers()
+    public function unvalidUsers()
     {
         return $this->query("
         SELECT *
@@ -30,7 +30,7 @@ class User extends Table
      *
      * @return array
      */
-    public function valideUsers()
+    public function validUsers()
     {
         return $this->query("
         SELECT *

@@ -1,10 +1,10 @@
-<!-- <h3>Modifier l'article N° <?= filter_var($article->id, FILTER_SANITIZE_NUMBER_INT); ?></h3> -->
+<!-- <h3>Modifier l'article N° <?= filter_var($post->id, FILTER_SANITIZE_NUMBER_INT); ?></h3> -->
 
 
 <form method="post">
     <?= filter_var($form->input('titre', 'titre de l\'article')); ?>
 
-    <?= isset($redacteur) ? filter_var($form->select('autor', 'Auteur', $redacteur)) : null; ?>
+    <?= isset($author) ? filter_var($form->select('autor', 'Auteur', $author)) : null; ?>
 
     <?= filter_var($form->input('chapo', 'Chapo', ['type' => 'textarea'])); ?>
 

@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($commentaires as $comment) : ?>
+        <?php foreach($comments as $comment) : ?>
 
             <tr>
                 <td><?= filter_var($comment->id, FILTER_SANITIZE_NUMBER_INT); ?></td>

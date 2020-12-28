@@ -115,16 +115,15 @@ class PostsController extends \App\Controller\Admin\AppController
 
         }
 
-        $article = $postTable->find($id);
+        $post = $postTable->find($id);
+        $validUsers = $userTable->validUsers();
+        $author = $userTable->objList('id', 'username', $validUsers);
 
-        $valideUsers = $userTable->valideUsers();
-        $redacteur = $userTable->objList('id', 'username', $valideUsers);
-
-        $form = new BootstrapForm($article);
+        $form = new BootstrapForm($post);
 
         isset($notification) 
-        ? $this->render('admin.posts.edit', compact('redacteur', 'form', 'article', 'notification'))
-        : $this->render('admin.posts.edit', compact('redacteur', 'form', 'article'));
+        ? $this->render('admin.posts.edit', compact('author', 'form', 'post', 'notification'))
+        : $this->render('admin.posts.edit', compact('author', 'form', 'post'));
 
     }
 

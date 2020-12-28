@@ -25,8 +25,8 @@ class CommentsController extends \App\Controller\Admin\AppController
      */
     public function index($notification = null)
     {
-        $commentaires = $this->loadModel('Comment')->unvalideComments();
-        $this->render('admin.comments.index', compact('commentaires', 'notification'));
+        $comments = $this->loadModel('Comment')->unvalidComments();
+        $this->render('admin.comments.index', compact('comments', 'notification'));
     }
 
     /**
@@ -90,7 +90,7 @@ class CommentsController extends \App\Controller\Admin\AppController
      */
     public function addComments($postId)
     {
-        $commentaireTable = $this->loadModel('Comment');
+        $commentTable = $this->loadModel('Comment');
 
         $data = $this->inputEscaping();
 
@@ -98,7 +98,7 @@ class CommentsController extends \App\Controller\Admin\AppController
             $result = null;
             if(!empty($data['titre']) && !empty($data['contenu']) ){
 
-                $result = $commentaireTable->create([
+                $result = $commentTable->create([
                     'titre' => $data['titre'],
                     'contenu' => $data['contenu'],
                     'article_id' => $postId,
@@ -114,19 +114,18 @@ class CommentsController extends \App\Controller\Admin\AppController
 
         $form = new BootstrapForm($data);
 
-        $ressources = [];
-        $ressources[0] = $form;
+        $resources = [];
+        $resources[0] = $form;
 
-        isset($notification) 
-            ? $ressources[1] = $notification
-            : $ressources;
+        if(isset($notification)){
+            $resources[1] = $notification;
+        }
 
-
-        $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
-        $comment = new \App\Controller\CommentsController();
-        $commentaires = $comment->indexForArticle($postId);
-        $formComment = $ressources;
-        $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
+        $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));
+        $commentController = new \App\Controller\CommentsController();
+        $comments = $commentController->indexForArticle($postId);
+        $formComment = $resources;
+        $this->render('posts.show', compact('post', 'comments', 'formComment'));
     }
 
 }

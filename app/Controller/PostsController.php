@@ -38,20 +38,20 @@ class PostsController extends AppController
     public function show($postId)
     {
 
-        $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
+        $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));
 
-        if(!$article){
+        if(!$post){
             $this->ressourceNotFound();
         }
 
-        $commentary = new CommentsController();
-        $commentaires = $commentary->indexForArticle($postId);
+        $commentController = new CommentsController();
+        $comments = $commentController->indexForArticle($postId);
 
         if(Session::get('auth') !== null){
             $formComment = array(new BootstrapForm());
-            $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
+            $this->render('posts.show', compact('post', 'comments', 'formComment'));
         } else {
-           $this->render('posts.show', compact('article', 'commentaires')); 
+           $this->render('posts.show', compact('post', 'comments'));
         }
 
     }

@@ -24,8 +24,8 @@ class UsersController extends \App\Controller\Admin\AppController
      */
     public function index($notification = null)
     {
-        $unvalidateUsers = $this->loadModel('User')->unvalideUsers();
-        $users = $this->loadModel('User')->valideUsers();
+        $unvalidateUsers = $this->loadModel('User')->unvalidUsers();
+        $users = $this->loadModel('User')->validUsers();
         $form = [];
         foreach ($users as $user) {
             $form[$user->id] = new BootstrapForm($user);
