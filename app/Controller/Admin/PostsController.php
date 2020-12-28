@@ -55,9 +55,6 @@ class PostsController extends AppController
                     'contenu' => $data['contenu'],
                     'autor' => Session::get('auth'),
                     'date' => date('Y-m-d H:i:s'),
-
-                    'categorie_id' => 1
-
                 ]);
             }
 
