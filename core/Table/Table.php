@@ -37,7 +37,7 @@ class Table
         if ($this->table === null) {
             $parts = explode('\\', get_class($this));
             $className = end($parts);
-            $this->table = $table = strtolower($className) . 's';
+            $this->table = strtolower($className) . 's';
         }
 
     }

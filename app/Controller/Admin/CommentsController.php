@@ -2,12 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\App;
 use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
-use App\Controller\ArticlesController;
 
-class CommentsController extends \App\Controller\Admin\AppController
+class CommentsController extends AppController
 {
 
     public function __construct()

@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use Core\HTML\BootstrapForm;
-
 class CommentsController extends AppController
 {
 

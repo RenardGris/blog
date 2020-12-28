@@ -4,9 +4,8 @@ namespace App\Controller\Admin;
 
 use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
-use App\App;
 
-class PostsController extends \App\Controller\Admin\AppController
+class PostsController extends AppController
 {
 
 
