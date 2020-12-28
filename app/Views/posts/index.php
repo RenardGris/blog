@@ -1,6 +1,3 @@
-
-
-
 <div class="row">
     <div class="col-sm-11">
 
@@ -27,3 +24,5 @@
         <?php
     }
     ?>
+    </div>
+</div>
