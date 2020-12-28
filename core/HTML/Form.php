@@ -43,7 +43,10 @@ class Form
     {
         $type = isset($option['type']) ? $option['type'] : 'text';
 
+        $label = '<label>' . $label . '</label>';
+
         return $this->surround(
+            $label .
             '<input
                 type="' . $type . '" name="' . $name . '"
                 value="' . $this->getValue($name) . '"
