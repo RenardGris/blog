@@ -92,21 +92,21 @@ class Auth
         }
 
         $ressource = explode( '/', filter_input(INPUT_GET, 'url'));
-
+        $right = 1;
         if($ressource[0] === 'admin'){
             $ressource = $ressource[1];
-            $ressource === 'dash' ? $right = 2 : $right = 3;
-        } else {
-            $right = 1;
+            $right = 3;
+
+            if($ressource === 'dash' || $ressource === 'posts' || $ressource === 'newpost'){
+                $right = 2;
+            }
+
         }
-        
-        if($acessRight){
-            if ($acessRight >= $right) {
+
+        if($acessRight && $acessRight >= $right){
                 return true;
-            } else {
-                return false;
-            }  
         }
+        return false;
 
     }
 
