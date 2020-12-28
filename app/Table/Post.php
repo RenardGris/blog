@@ -21,7 +21,6 @@ class Post extends Table
         return $this->query("
             SELECT articles.id, articles.titre, articles.chapo, articles.date
             FROM articles
-
             ORDER BY articles.date DESC
             ");
     }

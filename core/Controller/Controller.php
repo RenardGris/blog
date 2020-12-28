@@ -2,7 +2,6 @@
 
 namespace Core\Controller;
 
-use App\App;
 use Core\HTML\BootstrapAlert;
 use Core\Security\Security;
 

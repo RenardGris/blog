@@ -33,7 +33,6 @@ class MysqlDb extends Database
     {
 
         if ($this->pdo === null) {
-            //$pdo = new PDO('mysql:dbname=blog;host=localhost', 'root', '');
             $option = array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_EMULATE_PREPARES => false
@@ -82,11 +81,6 @@ class MysqlDb extends Database
         return $datas;
     }
 
-    public function exec($statement)
-    {
-        $req = $this->getPDO()->exec($statement);
-        return $req;
-    }
 
     /**
      *
@@ -104,7 +98,6 @@ class MysqlDb extends Database
     {
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);
-        //$req->setFetchMode(PDO::FETCH_CLASS, $className);
 
         if (
             strpos($statement, "UPDATE") === 0 ||
@@ -126,11 +119,6 @@ class MysqlDb extends Database
             $datas = $req->fetchAll();
         }
         return $datas;
-    }
-
-    public function lastInsertId()
-    {
-        return $this->getPDO()->lastInsertId();
     }
 
 }
