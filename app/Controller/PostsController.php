@@ -41,7 +41,7 @@ class PostsController extends AppController
         $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
 
         if(!$article){
-            $this->notFound();
+            $this->ressourceNotFound();
         }
 
         $commentary = new CommentsController();

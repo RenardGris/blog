@@ -49,4 +49,16 @@ class AppController extends Controller
         }
     }
 
+    /**
+     * in case the request ressource is undefined
+     * redirect with notfound error msg
+     *
+     */
+    protected function ressourceNotFound()
+    {
+        header("HTTP/1.0 404 Not Found");
+        header('location:'. App::getInstance()->getBaseUrl() .'notfound');
+
+    }
+
 }

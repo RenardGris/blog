@@ -92,7 +92,7 @@ class PostsController extends \App\Controller\Admin\AppController
         $userTable = $this->loadModel('User');
 
         if(!$postTable->find(htmlentities($id))){
-            $this->notFound();
+            $this->ressourceNotFound();
         }
 
         $data = $this->inputEscaping();
