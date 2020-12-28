@@ -30,7 +30,7 @@ class Post extends Table
      * get all data and comments from the post with id = $id
      *
      * @param int $id
-     * @return array
+     * @return object
      */
     public function findWithComments(int $id)
     {
