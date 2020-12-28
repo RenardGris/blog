@@ -2,6 +2,11 @@
 
 namespace Core\HTML;
 
+/**
+ * Class Form
+ * generate html for forms
+ *
+ */
 class Form
 {
 
@@ -13,11 +18,27 @@ class Form
         $this->data = $data;
     }
 
+    /**
+     *
+     * surround the $html param with the value of surround property
+     *
+     * @param string $html
+     * @return string
+     */
     protected function surround($html)
     {
         return "<{$this->surround}> $html </{$this->surround}>";
     }
 
+    /**
+     *
+     * generate input for forms
+     *
+     * @param string $name
+     * @param string $label
+     * @param array $option
+     * @return string
+     */
     public function input($name, $label, $option = [])
     {
         $type = isset($option['type']) ? $option['type'] : 'text';
@@ -30,6 +51,12 @@ class Form
         );
     }
 
+    /**
+     * return the selected value from a select input in forms
+     *
+     * @param string $index
+     * @return mixed|null
+     */
     protected function getValue($index)
     {
 
@@ -41,6 +68,13 @@ class Form
 
     }
 
+    /**
+     *
+     * Generate submit button for forms
+     *
+     * @param string $name
+     * @return string
+     */
     public function submit($name)
     {
         return $this->surround('<button type="submit">Envoyer</button>');

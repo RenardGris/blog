@@ -4,6 +4,11 @@ namespace Core\Database;
 
 use \PDO;
 
+/**
+ * Class MysqlDb
+ * Manage Connection to Mysql database and SQL request with PDO
+ *
+ */
 class MysqlDb extends Database
 {
 
@@ -21,6 +26,9 @@ class MysqlDb extends Database
         $this->dbHost = $dbHost;
     }
 
+    /**
+     * @return PDO
+     */
     private function getPDO()
     {
 
@@ -37,6 +45,16 @@ class MysqlDb extends Database
         return $this->pdo;
     }
 
+    /**
+     *
+     * Make PDO query
+     * that can return an object or directly instant of class specify in params $classname
+     *
+     * @param $statement
+     * @param null|string $className
+     * @param bool $one
+     * @return array|false|mixed|\PDOStatement
+     */
     public function query($statement, $className = null, $one = false)
     {
         $req = $this->getPDO()->query($statement);
@@ -70,6 +88,18 @@ class MysqlDb extends Database
         return $req;
     }
 
+    /**
+     *
+     * Make PDO prepare statement
+     * that can return an object or directly instant of class specify in params $classname
+     * according to the result of the statement
+     *
+     * @param string $statement
+     * @param array $attributes
+     * @param null|string $className
+     * @param bool $one
+     * @return array|bool|mixed
+     */
     public function prepare($statement, $attributes, $className = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);

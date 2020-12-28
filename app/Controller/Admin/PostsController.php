@@ -15,6 +15,14 @@ class PostsController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
+    /**
+     *
+     * Index all posts with notification if isset
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\index
+     *
+     * @param null|string $notification
+     */
     public function index($notification = null)
     {
         $posts = $this->loadModel('Post')->all();
@@ -24,6 +32,14 @@ class PostsController extends \App\Controller\Admin\AppController
             : $this->render('admin.posts.index', compact('posts'));
     }
 
+    /**
+     *
+     * Create new post
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\add
+     * with success alert if true, danger alert in case of error
+     *
+     */
     public function add()
     {
         
@@ -60,6 +76,15 @@ class PostsController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     *
+     * Edit the post with the id = $id
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\edit
+     * with success alert if true, danger alert in case of error
+     *
+     * @param int $id
+     */
     public function edit($id)
     {
         
@@ -103,6 +128,13 @@ class PostsController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     * Delete the specified post
+     *
+     * return render from $this->index
+     * with success alert if true, danger alert in case of error
+     *
+     */
     public function delete()
     {
         $postTable = $this->loadModel('Post');

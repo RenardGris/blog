@@ -15,12 +15,26 @@ class CommentsController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
+    /**
+     *
+     * list all comments waiting for verification with notification alert if isset
+     *
+     * return render in Core\Controller\Controller with \Views\admin\comments\index
+     *
+     * @param null|string $notification
+     */
     public function index($notification = null)
     {
         $commentaires = $this->loadModel('Comment')->unvalideComments();
         $this->render('admin.comments.index', compact('commentaires', 'notification'));
     }
 
+    /**
+     * Valid the specified comment
+     *
+     * return render from $this->index
+     * with notification according to result
+     */
     public function validate()
     {
 
@@ -41,6 +55,13 @@ class CommentsController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     * Delete the specified comment
+     *
+     * return render from $this->index
+     * with success alert if true,
+     * else with danger alert
+     */
     public function delete()
     {
         $commentTable = $this->loadModel('Comment');
@@ -58,6 +79,15 @@ class CommentsController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     *
+     * Create a new comment
+     *
+     * return render in \Core\Controller\Controller with \Views\posts\show
+     * with success alert if true, else danger alert
+     *
+     * @param int $postId
+     */
     public function addComments($postId)
     {
         $commentaireTable = $this->loadModel('Comment');

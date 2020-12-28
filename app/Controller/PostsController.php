@@ -14,7 +14,11 @@ class PostsController extends AppController
 
     }
 
-    //Affiche tous les articles
+    /**
+     * Index all the PostEntity
+     * return render in \Views\post\index
+     *
+     */
     public function index()
     {
 
@@ -23,7 +27,14 @@ class PostsController extends AppController
 
     }
 
-    //Affiche l'article selectionné
+
+    /**
+     * Show the selected PostEntity
+     * with its comments and new comment form if user is logged
+     * return render in \Views\post\show
+     *
+     * @param int $postId
+     */
     public function show($postId)
     {
 

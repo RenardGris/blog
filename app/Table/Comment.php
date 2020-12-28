@@ -11,8 +11,10 @@ class Comment extends Table
 
     /**
      *
-     * Recupere les commentaires d'un article
+     * List all comments from the post with id = $article_id
+     *
      * @param $article_id int
+     *
      * @return array
      *
      */
@@ -28,7 +30,8 @@ class Comment extends Table
 
     /**
      *
-     * recupère tous les commentaires (en attente de validation)
+     * List all comments waiting for validation
+     *
      * @return array
      *
      */

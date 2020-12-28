@@ -13,7 +13,14 @@ class CommentsController extends AppController
 
     }
 
-    //affiche tous les commentaires d'un article
+
+    /**
+     *
+     * index all comments from the post with id = $postId
+     *
+     * @param int $postId
+     * @return array
+     */
     public function indexForArticle($postId)
     {
 

@@ -2,14 +2,35 @@
 
 namespace Core\HTML;
 
+/**
+ * Class BootstrapForm
+ * Generate Bootstrap html code for forms
+ *
+ */
 class BootstrapForm extends Form
 {
 
+    /**
+     *
+     * surround params with div
+     *
+     * @param string $html
+     * @return string
+     */
     protected function surround($html)
     {
         return "<div class=\"form-group\"> $html </div>";
     }
 
+    /**
+     *
+     * Generate bootstrap input html code
+     *
+     * @param string $name
+     * @param string $label
+     * @param array $option
+     * @return string
+     */
     public function input($name, $label, $option = [])
     {
 
@@ -34,11 +55,27 @@ class BootstrapForm extends Form
         return $this->surround($label . $input);
     }
 
+    /**
+     *
+     * Generate a bootstrap submit button
+     *
+     * @param string $name
+     * @return string
+     */
     public function submit($name)
     {
         return $this->surround('<button type="submit" class="btn btn-primary">Envoyer</button>');
     }
 
+    /**
+     *
+     * generate a Bootstrap select input
+     *
+     * @param string $name
+     * @param string $label
+     * @param array $options
+     * @return string
+     */
     public function select($name, $label, $options)
     {
         if ($label != null) {

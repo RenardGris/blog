@@ -11,7 +11,7 @@ class Post extends Table
 
     /**
      *
-     * Recupere les derniers articles
+     * list all posts to newest to oldest
      *
      * @return array
      *
@@ -28,10 +28,10 @@ class Post extends Table
 
     /**
      *
-     * Recupere un article (via son id) et sa categorie associée
-     * @param $id int
-     * @return \App\Entity\ArticleEntity
+     * get all data and comments from the post with id = $id
      *
+     * @param int $id
+     * @return array
      */
     public function findWithCategorie($id)
     {

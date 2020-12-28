@@ -8,12 +8,28 @@ use Core\Database\MysqlDb;
 class App
 {
 
+    /**
+     * @var string
+     */
     public $titre = "Blog PhPoo";
+    /**
+     * @var string
+     */
     public $linkPath;
-
+    /**
+     * @var MysqlDb
+     */
     private $dbInstance;
+    /**
+     * @var null|App
+     */
     private static $_instance;
 
+    /**
+     * Singleton
+     *
+     * @return App
+     */
     public static function getInstance()
     {
 
@@ -23,7 +39,13 @@ class App
         return self::$_instance;
     }
 
-    //Factorie pour les table ( classes )
+    /**
+     *
+     * Factory for \Table class
+     *
+     * @param string $name
+     * @return mixed (\Table Class)
+     */
     public function getTable($name)
     {
 
@@ -32,6 +54,13 @@ class App
 
     }
 
+    /**
+     *
+     * Singleton
+     * generate instance of MysqlDb with credentials in config files (\config\config.php)
+     *
+     * @return MysqlDb
+     */
     public function getDb()
     {
 
@@ -50,6 +79,10 @@ class App
 
     }
 
+    /**
+     * Overwriting params in php.ini
+     * and start php session
+     */
     public static function load()
     {
         ini_set( 'session.use_only_cookies',TRUE );
@@ -59,6 +92,12 @@ class App
         session_start();
     }
 
+    /**
+     *
+     * define the path of the app
+     *
+     * @return string
+     */
     public function getBaseUrl()
     {
         if($this->linkPath === null){

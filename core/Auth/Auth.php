@@ -6,11 +6,15 @@ use Core\Database\Database;
 
 /**
  * Class Auth
- * Permet la gestion de l'authentification (connexion et droits d'accès) des utilisateurs 
+ * Manage authentication, access rights
+ *
  */
 class Auth
 {
 
+    /**
+     * @var Database
+     */
     private $db;
 
     public function __construct(Database $db)
@@ -20,8 +24,10 @@ class Auth
 
     /**
      *
-     * @params $username
-     * @params $password
+     * verify the credentials and generate new session with user id and token if valid
+     *
+     * @params string $username
+     * @params string $password
      * @return boolean
      *
      */
@@ -52,7 +58,8 @@ class Auth
 
     /**
      * 
-     * renvoie l'id de l'utilisateur si il est connecté
+     * return the id from the user if logged
+     *
      * @return int 
      */
     public function logged()
@@ -62,9 +69,9 @@ class Auth
 
     /**
      *
-     * Permet de verifier si l'utilisateur dispose des droits d'accès
+     * check access level needed for ressources
      * 
-     * @params $userId int
+     * @params int $userId
      * @return boolean
      */
     public function authorized($userId)
@@ -106,7 +113,8 @@ class Auth
 
     /***
      *
-     * Genère un token aléatoire basé sur le timestamp de connexion
+     * Generate a random token for prevent csrf
+     *
      * @return string
      *
      */

@@ -4,9 +4,19 @@ namespace Core\Security;
 
 use Core\Auth\Session;
 
+/**
+ * Class Security
+ * Secure inputs value from user to prevent some attacks
+ *
+ */
 class Security
 {
 
+    /**
+     * filter and sanitize the input value from the user pass in $_POST
+     *
+     * @return array
+     */
     public static function xss()
     {
         $data = [];
@@ -21,6 +31,11 @@ class Security
         }
     }
 
+    /**
+     * check if the token from forms is the same as $_SESSION
+     *
+     * @return bool
+     */
     public static function csrf()
     {
         if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING) === filter_var(Session::get('token'), FILTER_SANITIZE_STRING )){
@@ -29,6 +44,14 @@ class Security
         return false;
     }
 
+    /**
+     *
+     * Sanitize the value according to the requested type
+     *
+     * @param string $type
+     * @param mixed $value
+     * @return mixed
+     */
     public static function sanitizer($type, $value){
 
         $inputs = [ FILTER_SANITIZE_STRING => ['firstname','lastname','username','password','titre','chapo','contenu'],

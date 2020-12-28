@@ -13,6 +13,15 @@ class UsersController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
+    /**
+     *
+     * list all users in two arrays according to the type (valid or waiting for validation)
+     * foreach valid user generate a form attached to the user id
+     *
+     * render \Views\admin\users\index
+     *
+     * @param null|string $notification
+     */
     public function index($notification = null)
     {
         $unvalidateUsers = $this->loadModel('User')->unvalideUsers();
@@ -25,6 +34,11 @@ class UsersController extends \App\Controller\Admin\AppController
         $this->render('admin.users.index', compact('unvalidateUsers', 'users', 'form', 'notification'));
     }
 
+    /**
+     * Valid the specified user
+     *
+     * return render from $this->index
+     */
     public function validate()
     {
 
@@ -45,6 +59,11 @@ class UsersController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     * Delete the specified users
+     *
+     * return render from $this->index
+     */
     public function delete()
     {
         $userTable = $this->loadModel('User');
@@ -63,6 +82,11 @@ class UsersController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     * Modified the role of the specified user
+     *
+     * return render from $this->index
+     */
     public function changeRole()
     {
         $userTable = $this->loadModel('User');
