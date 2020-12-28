@@ -29,7 +29,7 @@ class AppController extends Controller
      * @param string $modelName
      * @return mixed (\Table Class $modelName)
      */
-    protected function loadModel($modelName)
+    protected function loadModel(string $modelName)
     {
         return App::getInstance()->getTable($modelName);
     }

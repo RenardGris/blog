@@ -15,9 +15,9 @@ class Security
     /**
      * filter and sanitize the input value from the user pass in $_POST
      *
-     * @return array
+     * @return array|null
      */
-    public static function xss()
+    public static function xss(): ?array
     {
         $data = [];
 
@@ -29,6 +29,7 @@ class Security
             }
             return $data;
         }
+        return null;
     }
 
     /**
@@ -36,7 +37,7 @@ class Security
      *
      * @return bool
      */
-    public static function csrf()
+    public static function csrf(): bool
     {
         if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING) === filter_var(Session::get('token'), FILTER_SANITIZE_STRING )){
             return true;
@@ -52,7 +53,7 @@ class Security
      * @param mixed $value
      * @return mixed
      */
-    public static function sanitizer($type, $value){
+    public static function sanitizer(string $type, $value){
 
         $inputs = [ FILTER_SANITIZE_STRING => ['firstname','lastname','username','password','titre','chapo','contenu'],
                     FILTER_SANITIZE_NUMBER_INT => ['role', 'article_id', 'user_id', 'id'],

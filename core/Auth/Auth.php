@@ -26,12 +26,11 @@ class Auth
      *
      * verify the credentials and generate new session with user id and token if valid
      *
-     * @params string $username
-     * @params string $password
+     * @param string $username
+     * @param string $password
      * @return boolean
-     *
      */
-    public function login($username, $password)
+    public function login(string $username, string $password): bool
     {
 
         $user = $this->db->prepare(
@@ -62,7 +61,7 @@ class Auth
      *
      * @return int 
      */
-    public function logged()
+    public function logged(): int
     {
         return Session::get('auth');
     }
@@ -70,11 +69,11 @@ class Auth
     /**
      *
      * check access level needed for ressources
-     * 
-     * @params int $userId
+     *
+     * @param int $userId
      * @return boolean
      */
-    public function authorized($userId)
+    public function authorized(int $userId): bool
     {
         $userRole = $this->db->prepare(
             'SELECT role FROM users WHERE id = ?',
@@ -118,7 +117,7 @@ class Auth
      * @return string
      *
      */
-    public function getCSRFToken()
+    public function getCSRFToken(): string
     {
         return sha1(rand(42,619)*time());
     }

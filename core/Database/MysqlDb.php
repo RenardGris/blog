@@ -29,7 +29,7 @@ class MysqlDb extends Database
     /**
      * @return PDO
      */
-    private function getPDO()
+    private function getPDO(): PDO
     {
 
         if ($this->pdo === null) {
@@ -49,16 +49,16 @@ class MysqlDb extends Database
      * Make PDO query
      * that can return an object or directly instant of class specify in params $classname
      *
-     * @param $statement
+     * @param string $statement
      * @param null|string $className
      * @param bool $one
      * @return array|false|mixed|\PDOStatement
      */
-    public function query($statement, $className = null, $one = false)
+    public function query(string $statement, $className = null, $one = false)
     {
         $req = $this->getPDO()->query($statement);
 
-        if (
+        if(
             strpos($statement, "UPDATE") === 0 ||
             strpos($statement, "INSERT") === 0 ||
             strpos($statement, "DELETE") === 0
@@ -94,7 +94,7 @@ class MysqlDb extends Database
      * @param bool $one
      * @return array|bool|mixed
      */
-    public function prepare($statement, $attributes, $className = null, $one = false)
+    public function prepare(string $statement, array $attributes, $className = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);

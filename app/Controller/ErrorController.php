@@ -24,7 +24,7 @@ class ErrorController extends AppController
      *
      * @param string $error
      */
-    public function index ($error) {
+    public function index (string $error) {
 
         $this->render('error.index', compact('error'));
 

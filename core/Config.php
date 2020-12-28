@@ -31,7 +31,7 @@ class Config
      * @param $file
      * @return Config
      */
-    public static function getInstance($file)
+    public static function getInstance($file): Config
     {
         if (self::$_instance === null) {
             self::$_instance = new Config($file);

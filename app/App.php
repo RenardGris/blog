@@ -30,7 +30,7 @@ class App
      *
      * @return App
      */
-    public static function getInstance()
+    public static function getInstance(): ?App
     {
 
         if (self::$_instance === null) {
@@ -46,7 +46,7 @@ class App
      * @param string $name
      * @return mixed (\Table Class)
      */
-    public function getTable($name)
+    public function getTable(string $name)
     {
 
         $name = '\\App\\Table\\' . ucfirst($name);
@@ -61,7 +61,7 @@ class App
      *
      * @return MysqlDb
      */
-    public function getDb()
+    public function getDb(): MysqlDb
     {
 
         $config = Config::getInstance(ROOT . '/config/config.php');
@@ -98,7 +98,7 @@ class App
      *
      * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string
     {
         if($this->linkPath === null){
             $path = explode('index.php', filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL));

@@ -17,7 +17,7 @@ class BootstrapForm extends Form
      * @param string $html
      * @return string
      */
-    protected function surround($html)
+    protected function surround(string $html): string
     {
         return "<div class=\"form-group\"> $html </div>";
     }
@@ -31,7 +31,7 @@ class BootstrapForm extends Form
      * @param array $option
      * @return string
      */
-    public function input($name, $label, $option = [])
+    public function input(string $name, string $label, $option = []): string
     {
 
         $type = isset($option['type']) ? $option['type'] : 'text';
@@ -62,7 +62,7 @@ class BootstrapForm extends Form
      * @param string $name
      * @return string
      */
-    public function submit($name)
+    public function submit(string $name): string
     {
         return $this->surround('<button type="submit" class="btn btn-primary">'.$name.'</button>');
     }
@@ -72,11 +72,11 @@ class BootstrapForm extends Form
      * generate a Bootstrap select input
      *
      * @param string $name
-     * @param string $label
+     * @param string|null $label
      * @param array $options
      * @return string
      */
-    public function select($name, $label, $options)
+    public function select(string $name, ?string $label, array $options): string
     {
         if ($label != null) {
             $label = '<label>' . $label . '</label>';

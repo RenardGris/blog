@@ -16,7 +16,7 @@ class Post extends Table
      * @return array
      *
      */
-    public function last()
+    public function last(): array
     {
         return $this->query("
             SELECT articles.id, articles.titre, articles.chapo, articles.date
@@ -32,7 +32,7 @@ class Post extends Table
      * @param int $id
      * @return object
      */
-    public function findWithComments(int $id)
+    public function findWithComments(int $id): object
     {
         return $this->query("
             SELECT articles.* , users.username as redacteur

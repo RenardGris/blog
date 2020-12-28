@@ -34,7 +34,8 @@ class Session
      * @param mixed $key
      * @param mixed $value
      */
-    public function put($key, $value){
+    public function put($key, $value)
+    {
         $this->session[$key] = $value;
     }
 
@@ -45,7 +46,8 @@ class Session
      * @param mixed $key
      * @return mixed|null
      */
-    public static function get($key){
+    public static function get($key)
+    {
         //return (isset($_SESSION[$key]) ? filter_var($_SESSION[$key]) : null);
         return (new Session())->getKey($key);
     }
@@ -56,7 +58,8 @@ class Session
      *
      * @param mixed $key
      */
-    public function forget($key){
+    public function forget($key)
+    {
         unset($this->session[$key]);
     }
 
@@ -67,7 +70,8 @@ class Session
      * @param mixed $key
      * @return mixed|null
      */
-    public function getKey($key){
+    public function getKey($key)
+    {
         return isset($this->session[$key]) ? $this->session[$key] : null;
     }
 

@@ -23,7 +23,7 @@ class Controller
      * @param string $view
      * @param array $variables
      */
-    protected function render($view, $variables = [])
+    protected function render(string $view, $variables = [])
     {
         ob_start();
         extract($variables);
@@ -41,7 +41,8 @@ class Controller
      * @param string $type
      * @return string
      */
-    public function getNotification($message, $type){
+    public function getNotification(string $message, string $type): string
+    {
 
         $alert = new BootstrapAlert;
         return $alert->notification($message, $type);
@@ -53,14 +54,15 @@ class Controller
      * Request the good type of alert according to params
      * (used as an abstract function to bind core classes and app)
      *
-     * @param boolean $result
-     * @param string $successAnswer
-     * @param string $errorAnswer
-     * @return string
+     * @param boolean|null $result
+     * @param string|null $successAnswer
+     * @param string|null $errorAnswer
+     * @return string|null
      */
-    public function notify($result , $successAnswer, $errorAnswer ){
+    public function notify(?bool $result , ?string $successAnswer, ?string $errorAnswer): ?string
+    {
 
-        isset($result) && $result === true 
+        $result === true
             ? $answer = $this->getNotification($successAnswer, 'success')
             : $answer = $this->getNotification($errorAnswer, 'danger');
 
@@ -71,9 +73,10 @@ class Controller
      *
      * used as an abstract function to bind Security core class to App
      *
-     * @return array
+     * @return null|array
      */
-    public function inputEscaping(){
+    public function inputEscaping(): ?array
+    {
         return Security::xss();
     }
 
@@ -83,7 +86,8 @@ class Controller
      *
      * @return bool
      */
-    public function checkTokenCSRF(){
+    public function checkTokenCSRF(): bool
+    {
         return Security::csrf();
     }
 

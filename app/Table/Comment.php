@@ -17,7 +17,7 @@ class Comment extends Table
      *
      * @return array
      */
-    public function lastByPost($postId)
+    public function lastByPost(int $postId): array
     {
         return $this->query("
         SELECT commentaires.* , users.username as redacteur
@@ -34,7 +34,7 @@ class Comment extends Table
      * @return array
      *
      */
-    public function unvalidComments()
+    public function unvalidComments(): array
     {
         return $this->query("
         SELECT *

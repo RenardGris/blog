@@ -20,7 +20,8 @@ class Router {
      * @param callable $callable
      * @param null $name
      */
-    public function get($path, $callable, $name = null){
+    public function get(string $path, callable $callable, $name = null)
+    {
         $this->add($path, $callable, $name, 'GET');
     }
 
@@ -29,10 +30,11 @@ class Router {
      * add post method URI
      *
      * @param string $path
-     * @param callable$callable
+     * @param callable $callable
      * @param null $name
      */
-    public function post($path, $callable, $name = null){
+    public function post(string $path, callable $callable, $name = null)
+    {
         $this->add($path, $callable, $name, 'POST');
     }
 
@@ -42,10 +44,11 @@ class Router {
      *
      * @param string $path
      * @param callable $callable
-     * @param string $name
-     * @param string  $method
+     * @param null|string $name
+     * @param string $method
      */
-    private function add($path, $callable, $name, $method){
+    private function add(string $path, callable $callable, ?string $name, string $method)
+    {
         $route = new Route($path,$callable);
         $this->routes[$method][] = $route;
         if($name){
@@ -61,7 +64,8 @@ class Router {
      *
      * @return false|callable
      */
-    public function run(){
+    public function run()
+    {
 
         $requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 

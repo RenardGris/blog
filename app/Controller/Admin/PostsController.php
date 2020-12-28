@@ -84,7 +84,7 @@ class PostsController extends AppController
      *
      * @param int $id
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         
         $postTable = $this->loadModel('Post');

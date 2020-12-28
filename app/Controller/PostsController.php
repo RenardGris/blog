@@ -35,7 +35,7 @@ class PostsController extends AppController
      *
      * @param int $postId
      */
-    public function show($postId)
+    public function show(int $postId)
     {
 
         $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));

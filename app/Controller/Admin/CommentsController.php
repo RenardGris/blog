@@ -86,7 +86,7 @@ class CommentsController extends AppController
      *
      * @param int $postId
      */
-    public function addComments($postId)
+    public function addComments(int $postId)
     {
         $commentTable = $this->loadModel('Comment');
 

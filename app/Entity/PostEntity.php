@@ -13,7 +13,7 @@ class PostEntity extends Entity
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return 'posts/' . $this->id;
     }
@@ -25,7 +25,7 @@ class PostEntity extends Entity
      *
      * @return string
      */
-    public function getExtrait()
+    public function getExtrait(): string
     {
 
         $html = '<p>' . substr($this->contenu, 0, 150) . '...</p>';

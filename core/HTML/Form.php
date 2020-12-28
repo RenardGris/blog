@@ -25,7 +25,7 @@ class Form
      * @param string $html
      * @return string
      */
-    protected function surround($html)
+    protected function surround(string $html): string
     {
         return "<{$this->surround}> $html </{$this->surround}>";
     }
@@ -39,7 +39,7 @@ class Form
      * @param array $option
      * @return string
      */
-    public function input($name, $label, $option = [])
+    public function input(string $name, string $label, $option = []): string
     {
         $type = isset($option['type']) ? $option['type'] : 'text';
 
@@ -60,7 +60,7 @@ class Form
      * @param string $index
      * @return mixed|null
      */
-    protected function getValue($index)
+    protected function getValue(string $index)
     {
 
         if (is_object($this->data)) {
@@ -78,7 +78,7 @@ class Form
      * @param string $name
      * @return string
      */
-    public function submit($name)
+    public function submit(string $name): string
     {
         return $this->surround('<button type="submit">'. $name .'</button>');
     }

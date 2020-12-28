@@ -13,7 +13,7 @@ class BootstrapAlert
      * @param string $type
      * @return string
      */
-    public function notification($message, $type)
+    public function notification(string $message, string $type): string
     {
         return  '<div class="alert alert-' .$type. '" alert-dismissible">' .$message. '</div>';
     }
