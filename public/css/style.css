@@ -1,6 +1,7 @@
 nav,
 footer {
   height: 75px;
+  background-color: #333;
 }
 
 #container {
@@ -449,6 +450,10 @@ img#logo {
 
   .social_link > span {
     font-size: 18px;
+  }
+
+  #navbarsExampleDefault {
+    margin-top:-15px;
   }
 
 }
