@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="notif">
             <?= !empty($notification) ? filter_var($notification) : null ?>
         </div>
 
