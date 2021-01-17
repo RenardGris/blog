@@ -457,3 +457,13 @@ img#logo {
   }
 
 }
+
+#nav_icon {
+  width: 50px;
+  margin: auto;
+}
+
+#navbarsExampleDefault {
+  background-color: #333;
+  padding: 15px;
+}
