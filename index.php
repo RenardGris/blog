@@ -13,10 +13,13 @@ App::load();
 
 $router = new Router\Router(filter_input(INPUT_GET, 'url'));
 
-//Articles
 $router->get('/', function(){
-    $controller = new Controller\PostsController;
-    $controller->index();
+    $controller = new Controller\AppController();
+    $controller->home();
+});
+$router->post('/', function(){
+    $controller = new Controller\AppController();
+    $controller->home();
 });
 $router->get('/posts', function(){
     $controller = new Controller\PostsController;
