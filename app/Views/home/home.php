@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="badgescard">
-                <span class="fa fa-github"></span>
-                <span class="fab fa-discord"></span>
+                <a href="https://github.com/RenardGris" class="social_link"><span class="fa fa-github"></span> RenardGris</a>
+                <span class="social_link"><span class="fab fa-discord"></span> RenardGris#0578</span>
             </div>
         </div>
 
