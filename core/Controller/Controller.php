@@ -3,6 +3,7 @@
 namespace Core\Controller;
 
 use Core\HTML\BootstrapAlert;
+use Core\Security\Security;
 
 class Controller
 {
@@ -25,19 +26,6 @@ class Controller
         header("HTTP/1.0 404 Not Found");
         header('location:index.php');
 
-    }
-
-    protected function forbidden()
-    {
-        header("HTTP/1.0 403 Forbidden");
-        die('Acces interdit');
-    }
-
-    protected function unauthorized()
-    {
-        header("HTTP/1.0 401 Unauthorized");
-        //header('location:index.php');
-        die('nop');
     }
 
     public function getNotification($message, $type){
