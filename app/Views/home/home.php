@@ -15,6 +15,11 @@
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModalCenter">
                             Contacter
                         </button>
+                        <a href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>public/cv.pdf" download="cv.pdf">
+                            <button type="button" class="btn_modal">
+                                Curriculum
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
