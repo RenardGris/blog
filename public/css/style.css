@@ -453,7 +453,15 @@ img#logo {
   }
 
   #navbarsExampleDefault {
-    margin-top:-15px;
+    margin-top: -15px;
+  }
+
+  #btn_contact_post,
+  #btn_contact_close {
+    font-size: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    width: 40%;
   }
 
 }
