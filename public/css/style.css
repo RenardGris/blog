@@ -35,12 +35,8 @@ footer {
   margin: 0;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
-
-
 }
 
-
-/*Posts*/
 #title {
   text-align: center;
 }
@@ -59,6 +55,13 @@ footer {
 
 #comment_part > h4 {
   padding: 10px 0;
+}
+
+.modal-body > form > div {
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
 }
 
 #comment_part > div > div:first-child {
@@ -88,7 +91,6 @@ footer {
   background-color: white;
 }
 
-
 #home_info {
   background-color: white;
   display: inline-block;
@@ -104,8 +106,6 @@ img#logo {
   background-color: white;
 }
 
-
-/*Badge home page*/
 .badgescard,
 .firstinfo {
   display: flex;
@@ -113,10 +113,9 @@ img#logo {
   align-items: center;
 }
 
-
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -137,7 +136,7 @@ img#logo {
   overflow: hidden;
 }
 
-.cardId:after {
+.cardId::after {
   content: '';
   display: block;
   width: 185px;
@@ -206,6 +205,7 @@ img#logo {
     opacity: 0;
     bottom: -500px;
   }
+
   100% {
     opacity: 1;
     bottom: 0;
@@ -216,6 +216,7 @@ img#logo {
   0% {
     bottom: 10px;
   }
+
   100% {
     bottom: -42px;
   }
@@ -228,6 +229,7 @@ img#logo {
     top: -24px;
     left: -253px;
   }
+
   100% {
     transform: rotate(-30deg);
     top: -24px;
@@ -247,12 +249,7 @@ img#logo {
   padding: 30px;
 }
 
-.modal-body > form > div {
-  display: block;
-  letter-spacing: 4px;
-  padding-top: 30px;
-  text-align: center;
-}
+
 
 .modal-body > form > div > label {
   color: #9b9b9b;
@@ -266,7 +263,6 @@ img#logo {
   transform: translateY(-34px);
   transition: all 0.3s;
 }
-
 
 .modal-body input,
 .modal-body textarea {
@@ -283,8 +279,6 @@ img#logo {
   width: 100%;
   -webkit-appearance: none;
   height: 45px;
-
-
 }
 
 .modal-body input:focus,
@@ -301,7 +295,6 @@ img#logo {
   box-shadow: none;
 }
 
-
 .modal-body input:focus {
   color: #f0f0f0;
   font-size: 20px;
@@ -311,7 +304,6 @@ img#logo {
   -webkit-transform: translateY(-60px);
   transform: translateY(-60px);
 }
-
 
 #btn_contact_post,
 #btn_contact_close {
@@ -329,12 +321,10 @@ img#logo {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
   width: 30%;
-
 }
 
 #btn_contact_close {
   float: right;
-
 }
 
 #btn_contact_close:hover,
@@ -355,7 +345,6 @@ img#logo {
   display: inline-block;
   color: white;
   opacity: 1;
-
 }
 
 .social_link > span {
@@ -364,12 +353,10 @@ img#logo {
 
 
 @media screen and (max-width: 550px) {
-
   .cardId {
     width: 100%;
     background-color: #6a6a6a;
   }
-
 
   .firstinfo {
     width: 100%;
@@ -383,8 +370,7 @@ img#logo {
     text-align: center;
   }
 
-
-  .cardId:after {
+  .cardId::after {
     content: '';
     display: block;
     width: 200%;
@@ -398,7 +384,8 @@ img#logo {
     width: 80%;
     margin: 0 10%;
     left: auto;
-
+    display: inline;
+    bottom: -70px;
   }
 
   .firstinfo img {
@@ -408,9 +395,7 @@ img#logo {
     background-color: white;
     display: block;
     margin: auto;
-
   }
-
 
   @keyframes animatop {
     0% {
@@ -447,11 +432,6 @@ img#logo {
     }
   }
 
-  .badgescard {
-    display: inline;
-    bottom: -70px;
-  }
-
   .badgescard > a {
     text-decoration: none;
     color: antiquewhite;
@@ -466,14 +446,10 @@ img#logo {
     display: inline-block;
     color: antiquewhite;
     opacity: 1;
-
   }
 
   .social_link > span {
     font-size: 18px;
   }
 
-
 }
-
-
