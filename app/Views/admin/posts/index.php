@@ -30,7 +30,8 @@
 
 
                             <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/dash" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= $post->id; ?>">
+                                <input type="hidden" name="id" value="<?= $post->id; ?>" />
+                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit"
                                         class="btn btn-danger"
                                 >
@@ -47,18 +48,18 @@
         </table>        
     </div>
     <div class="col-sm-2">
-    <h4>Autres administrations</h4>
-        
-    <li>
-        <a href=" comments "> Commentaires </a>
-    </li>
-    <li>
-        <a href=" posts "> Articles </a>
-    </li>
-    <li>
-        <a href=" users "> Utilisateurs </a>
-    </li>
-
+        <h4>Autres administrations</h4>
+        <ul>
+            <li>
+                <a href=" comments "> Commentaires </a>
+            </li>
+            <li>
+                <a href=" posts "> Articles </a>
+            </li>
+            <li>
+                <a href=" users "> Utilisateurs </a>
+            </li>
+        </ul>
     </div>
 </div>
 

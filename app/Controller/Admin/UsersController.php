@@ -30,7 +30,10 @@ class UsersController extends \App\Controller\Admin\AppController
 
         $userTable = $this->loadModel('User');
         if (!empty($_POST)) {
-            $result = $userTable->update($_POST['id'], [
+
+            $data = $this->inputEscaping();
+
+            $result = $userTable->update($data['id'], [
                 'validate' => 1,
             ]);
             
@@ -47,7 +50,10 @@ class UsersController extends \App\Controller\Admin\AppController
     {
         $userTable = $this->loadModel('User');
         if (!empty($_POST)) {
-            $result = $userTable->delete($_POST['id']);
+
+            $data = $this->inputEscaping();
+
+            $result = $userTable->delete($data['id']);
 
             $success = "Utilisateur supprimé avec succès";
             $error = "Erreur lors de la suppression de l'utilisateur";
@@ -62,8 +68,11 @@ class UsersController extends \App\Controller\Admin\AppController
     {
         $userTable = $this->loadModel('User');
         if (!empty($_POST)) {
-            $result = $userTable->update($_POST['id'], [
-                'role' => htmlentities($_POST['role']),
+
+            $data = $this->inputEscaping();
+
+            $result = $userTable->update($data['id'], [
+                'role' => $data['role'],
             ]);
 
             $success = "Changement du role utilisateur validé";

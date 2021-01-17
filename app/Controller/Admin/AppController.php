@@ -20,6 +20,8 @@ class AppController extends \App\Controller\AppController
             exit();
         }
 
+        $this->hasToken();
+
     }
 
 }

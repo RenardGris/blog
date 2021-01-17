@@ -46,7 +46,9 @@ class Auth
 
         if ($user) {
             if ($user->password === sha1($password) && $user->validate == 1) {
+                session_regenerate_id(true);
                 $_SESSION['auth'] = $user->id;
+                $_SESSION['token'] = $this->getCSRFToken();
                 return true;
             }
         }
@@ -108,5 +110,17 @@ class Auth
         }
 
     }
+
+    /***
+     *
+     * Genère un token aléatoire basé sur le timestamp de connexion
+     * @return string
+     *
+     */
+    public function getCSRFToken()
+    {
+        return sha1(rand(42,619)*time());
+    }
+
 
 }

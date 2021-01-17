@@ -44,4 +44,12 @@ class Controller
         return $answer;
     }
 
+    public function inputEscaping(){
+        return Security::xss();
+    }
+
+    public function checkTokenCSRF(){
+        return Security::csrf();
+    }
+
 }

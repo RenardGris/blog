@@ -21,7 +21,8 @@
                         <td>
 
                             <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/validate" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= $user->id; ?>">
+                                <input type="hidden" name="id" value="<?= $user->id; ?>" />
+                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit"
                                         class="btn btn-primary"
                                 >
@@ -31,7 +32,8 @@
 
 
                             <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/delete" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= $user->id; ?>">
+                                <input type="hidden" name="id" value="<?= $user->id; ?>" />
+                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit"
                                         class="btn btn-danger"
                                 >
@@ -69,14 +71,15 @@
 
                     <td>
                         <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/changeRole" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $user->id; ?>">
-                        <?= $form[$user->id]->select('role', null, ['commentateur' => 'commentateur', 'redacteur' => 'redacteur', 'admin' => 'admin']); ?>
-                        <button type="submit"
-                                class="btn btn-primary"
-                        >
-                        Valider
-                        </button>
-                    </form>
+                            <input type="hidden" name="id" value="<?= $user->id; ?>" />
+                            <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                            <?= $form[$user->id]->select('role', null, ['commentateur' => 'commentateur', 'redacteur' => 'redacteur', 'admin' => 'admin']); ?>
+                            <button type="submit"
+                                    class="btn btn-primary"
+                            >
+                            Valider
+                            </button>
+                        </form>
                     </td>
                 </tr>
 

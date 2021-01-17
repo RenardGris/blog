@@ -32,12 +32,14 @@ class PostsController extends \App\Controller\Admin\AppController
 
         if (!empty($_POST)) {
 
-            if( !empty($_POST['titre']) && !empty($_POST['chapo']) && !empty($_POST['contenu']) ) {
+            $data = $this->inputEscaping();
+
+            if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) ) {
 
                 $result = $postTable->create([
-                    'titre' => htmlentities($_POST['titre']),
-                    'chapo' => htmlentities($_POST['chapo']),
-                    'contenu' => htmlentities($_POST['contenu']),
+                    'titre' => $data['titre'],
+                    'chapo' => $data['chapo'],
+                    'contenu' => $data['contenu'],
                     'autor' => $_SESSION['auth'],
                     'date' => date('Y-m-d H:i:s'),
 
@@ -81,13 +83,15 @@ class PostsController extends \App\Controller\Admin\AppController
 
         if (!empty($_POST)) {
 
-            if( !empty($_POST['titre']) && !empty($_POST['chapo']) && !empty($_POST['contenu']) && !empty($_POST['autor']) ) {
+            $data = $this->inputEscaping();
+
+            if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor']) ) {
 
                 $result = $postTable->update(htmlentities($id), [
-                    'titre' => htmlentities($_POST['titre']),
-                    'chapo' => htmlentities($_POST['chapo']),
-                    'contenu' => htmlentities($_POST['contenu']),
-                    'autor' => htmlentities($_POST['autor']),
+                    'titre' => $data['titre'],
+                    'chapo' => $data['chapo'],
+                    'contenu' => $data['contenu'],
+                    'autor' => $data['autor'],
                     'date' => date('Y-m-d H:i:s')
                 ]);
 
@@ -119,7 +123,9 @@ class PostsController extends \App\Controller\Admin\AppController
         $postTable = $this->loadModel('Post');
         if (!empty($_POST)) {
 
-            $result = $postTable->delete(htmlentities($_POST['id']));
+            $data = $this->inputEscaping();
+
+            $result = $postTable->delete($data['id']);
            
             $success = "Article supprimé avec succès";
             $error = "Erreur lors de la suppression de l'article";
