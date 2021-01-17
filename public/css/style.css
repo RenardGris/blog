@@ -434,3 +434,52 @@ img#logo {
     background-color: white;
     color: #333333;
 }
+
+.badgescard > a {
+    text-decoration: none;
+    color: white;
+}
+
+.social_link {
+    font-size: 20px !important;
+    display: inline-block;
+    color: white;
+    opacity: 1 !important;
+
+}
+
+.social_link > span {
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 550px){
+
+    .badgescard{
+        display: inline;
+        bottom:-70px !important;
+    }
+
+    .badgescard > a {
+        text-decoration: none;
+        color: antiquewhite;
+    }
+
+    .badgescard > span {
+        margin: 0;
+    }
+
+    .social_link{
+        font-size: 18px !important;
+        display: inline-block;
+        color: antiquewhite;
+        opacity: 1 !important;
+
+    }
+
+    .social_link > span {
+        font-size: 18px;
+    }
+
+
+}
