@@ -2,7 +2,7 @@ nav, footer {
     height: 75px;
 }
 
-#container{
+#container {
     margin: 75px 0 0;
     padding: 0;
     height: 100%;
@@ -14,12 +14,12 @@ nav, footer {
     padding: 0;
 }
 
-.view_container{
+.view_container {
     min-height: 100%;
     height: 100%;
 }
 
-#home_container{
+#home_container {
     background-image: url("wall.jpg");
     background-repeat: no-repeat;
     background-position: bottom;
@@ -34,7 +34,7 @@ nav, footer {
 
     margin: 0;
     padding: 20px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 
 
 }
@@ -42,7 +42,7 @@ nav, footer {
 
 /*Posts*/
 #title {
- text-align: center;
+    text-align: center;
 }
 
 #comment_slide, .table_slide {
@@ -102,7 +102,6 @@ img#logo {
 }
 
 
-
 /*Badge home page*/
 .badgescard,
 .firstinfo {
@@ -149,7 +148,7 @@ img#logo {
     padding: 10px 20px;
     border-radius: 3px;
     background-color: #6A6A6A;
-    color:#fff;
+    color: #fff;
     width: 480px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     position: absolute;
@@ -233,101 +232,9 @@ img#logo {
     }
 }
 
-
-@media screen and (max-width: 550px){
-
-
-    .cardId {
-        width: 100%;
-        background-color: #6A6A6A;
-    }
-
-
-    .firstinfo {
-        width: 100%;
-        display: block;
-    }
-
-    .profileinfo {
-        width: 100%;
-        display: block;
-        margin: auto;
-        text-align: center;
-    }
-
-
-    .cardId:after {
-        content: '';
-        display: block;
-        width: 200%;
-        height: 200%;
-        background: white;
-        position: absolute;
-        animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
-    }
-
-    .badgescard {
-        width: 80%;
-        margin: 0 10%;
-        left: auto;
-
-    }
-
-    .firstinfo img {
-        border-radius: 10%;
-        width: 120px;
-        height: 120px;
-        background-color: white;
-        display: block;
-        margin: auto;
-
-    }
-
-
-
-
-    @keyframes animatop {
-        0% {
-            opacity: 0;
-            bottom: -500px;
-        }
-        100% {
-            opacity: 1;
-            bottom: 0px;
-        }
-    }
-
-    @keyframes animainfos {
-        0% {
-            bottom: 10px;
-        }
-        100% {
-            bottom: -42px;
-        }
-    }
-
-    @keyframes rotatemagic {
-        0% {
-            opacity: 0;
-            transform: rotate(0deg);
-            left: 500px;
-            top: 0px;
-        }
-        100% {
-            transform: rotate(-40deg);
-            left: 0px;
-            right: 0px;
-            top: 0px;
-        }
-    }
-
-
-}
-
-
 .modal-content {
     background-color: #1d2227;
-    color : #9B9B9B;
+    color: #9B9B9B;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
 }
@@ -370,7 +277,7 @@ img#logo {
     text-align: center;
     transition: all 0.3s;
     width: 100%;
-    -webkit-appearance:none;
+    -webkit-appearance: none;
     height: 45px;
 
 
@@ -392,7 +299,6 @@ img#logo {
 }
 
 
-
 .modal-body input:focus {
     color: #F0F0F0;
     font-size: 20px;
@@ -402,8 +308,6 @@ img#logo {
     -webkit-transform: translateY(-60px);
     transform: translateY(-60px);
 }
-
-
 
 
 #btn_contact_post, #btn_contact_close {
@@ -453,11 +357,94 @@ img#logo {
 }
 
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 550px) {
 
-    .badgescard{
+
+    .cardId {
+        width: 100%;
+        background-color: #6A6A6A;
+    }
+
+
+    .firstinfo {
+        width: 100%;
+        display: block;
+    }
+
+    .profileinfo {
+        width: 100%;
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+
+
+    .cardId:after {
+        content: '';
+        display: block;
+        width: 200%;
+        height: 200%;
+        background: white;
+        position: absolute;
+        animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
+    }
+
+    .badgescard {
+        width: 80%;
+        margin: 0 10%;
+        left: auto;
+
+    }
+
+    .firstinfo img {
+        border-radius: 10%;
+        width: 120px;
+        height: 120px;
+        background-color: white;
+        display: block;
+        margin: auto;
+
+    }
+
+
+    @keyframes animatop {
+        0% {
+            opacity: 0;
+            bottom: -500px;
+        }
+        100% {
+            opacity: 1;
+            bottom: 0px;
+        }
+    }
+
+    @keyframes animainfos {
+        0% {
+            bottom: 10px;
+        }
+        100% {
+            bottom: -42px;
+        }
+    }
+
+    @keyframes rotatemagic {
+        0% {
+            opacity: 0;
+            transform: rotate(0deg);
+            left: 500px;
+            top: 0px;
+        }
+        100% {
+            transform: rotate(-40deg);
+            left: 0px;
+            right: 0px;
+            top: 0px;
+        }
+    }
+
+    .badgescard {
         display: inline;
-        bottom:-70px !important;
+        bottom: -70px !important;
     }
 
     .badgescard > a {
@@ -469,7 +456,7 @@ img#logo {
         margin: 0;
     }
 
-    .social_link{
+    .social_link {
         font-size: 18px !important;
         display: inline-block;
         color: antiquewhite;
@@ -483,3 +470,5 @@ img#logo {
 
 
 }
+
+
