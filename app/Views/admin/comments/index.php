@@ -13,14 +13,14 @@
         <?php foreach($commentaires as $comment) : ?>
 
             <tr>
-                <td><?= $comment->id; ?></td>
-                <td><?= $comment->titre; ?></td>
-                <td><?= $comment->contenu ?></td>
+                <td><?= filter_var($comment->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
+                <td><?= filter_var($comment->titre, FILTER_SANITIZE_STRING); ?></td>
+                <td><?= filter_var($comment->contenu, FILTER_SANITIZE_STRING); ?></td>
                 <td>
 
-                    <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/comments/validate" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $comment->id; ?>" />
-                        <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                    <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/comments/validate" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="<?= filter_var($comment->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
+                        <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
                         <button type="submit"
                                 class="btn btn-primary"
                         >
@@ -29,9 +29,9 @@
                     </form>
 
 
-                    <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/comments/delete" method="post" style="display:inline">
-                        <input type="hidden" name="id" value="<?= $comment->id; ?>" />
-                        <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                    <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/comments/delete" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="<?= filter_var($comment->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
+                        <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
                         <button type="submit"
                                 class="btn btn-danger"
                         >
@@ -47,8 +47,4 @@
 
 </table>
 
-<?php
-if(isset($notification)){
-    require ROOT . 'app/Views/notification/show.php';
-}
-?>
+<?= !empty($notification) ? filter_var($notification) : null ?>

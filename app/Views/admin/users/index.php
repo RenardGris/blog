@@ -16,13 +16,13 @@
                 <?php foreach($unvalidateUsers as $user) : ?>
 
                     <tr>
-                        <td><?= $user->id; ?></td>
-                        <td><?= $user->username; ?></td>
+                        <td><?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
+                        <td><?= filter_var($user->username, FILTER_SANITIZE_STRING); ?></td>
                         <td>
 
-                            <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/validate" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= $user->id; ?>" />
-                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                            <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/validate" method="post" style="display:inline">
+                                <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
+                                <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING) ?>" />
                                 <button type="submit"
                                         class="btn btn-primary"
                                 >
@@ -31,9 +31,9 @@
                             </form>
 
 
-                            <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/delete" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= $user->id; ?>" />
-                                <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
+                            <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/delete" method="post" style="display:inline">
+                                <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
+                                <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
                                 <button type="submit"
                                         class="btn btn-danger"
                                 >
@@ -66,14 +66,14 @@
             <?php foreach($users as $user) : ?>
 
                 <tr>
-                    <td><?= $user->id; ?></td>
-                    <td><?= $user->username; ?></td>
+                    <td><?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
+                    <td><?= filter_var($user->username, FILTER_SANITIZE_STRING); ?></td>
 
                     <td>
-                        <form action="<?=App\App::getInstance()->getBaseUrl();?>admin/users/changeRole" method="post" style="display:inline">
-                            <input type="hidden" name="id" value="<?= $user->id; ?>" />
-                            <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>" />
-                            <?= $form[$user->id]->select('role', null, ['commentateur' => 'commentateur', 'redacteur' => 'redacteur', 'admin' => 'admin']); ?>
+                        <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/changeRole" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
+                            <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING) ?>" />
+                            <?= filter_var($form[$user->id]->select('role', null, ['commentateur' => 'commentateur', 'redacteur' => 'redacteur', 'admin' => 'admin'])); ?>
                             <button type="submit"
                                     class="btn btn-primary"
                             >
@@ -91,8 +91,5 @@
     </div>
 </div>
 
-<?php
-if(isset($notification)){
-    require ROOT . 'app/Views/notification/show.php';
-}
-?>
+<?= !empty($notification) ? filter_var($notification) : null ?>
+

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Core\Auth\Auth;
+use Core\Auth\Session;
 use App\App;
 use \Core\HTML\BootstrapForm;
 
@@ -13,22 +14,21 @@ class UsersController extends AppController
     {
 
         $error = null;
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
+        if (!empty($data)) {
             $auth = new Auth(App::getInstance()->getDb());
 
-            $data = $this->inputEscaping();
+            $error = "identifiant Incorrect";
+            $notification = $this->notify(null, null, $error);
 
             if ($auth->login($data['username'], $data['password'])) {
                 header('Location: admin/dash');
-            } else {
-                $error = "identifiant Incorrect";
-                $notification = $this->notify(null, null, $error);
             }
 
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         isset($notification) 
             ? $this->render('users.login', compact('form', 'notification')) 
@@ -38,7 +38,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        if (!empty($_SESSION['auth'])) {
+        if (Session::get('auth') !== null) {
             session_destroy();
             header('Location: ./ ');
         }
@@ -48,15 +48,11 @@ class UsersController extends AppController
     public function register()
     {
 
-        $error = null;
-        $validate = null;
-
         $userTable = $this->loadModel('User');
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
-
+        if (!empty($data)) {
+            $result = null;
             if(!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['username']) && !empty($data['password']) && !empty($data['email']) ){
 
                 $result = $userTable->create([
@@ -68,8 +64,6 @@ class UsersController extends AppController
                     'validate' => 0,
                 ]);
 
-            } else {
-                $result = null;
             }
 
             $success = "Votre demande a bien été reçu et sera validée prochainement";
@@ -78,7 +72,7 @@ class UsersController extends AppController
 
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         if(isset($notification)){
             $this->render('users.register', compact('form', 'notification'));

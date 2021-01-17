@@ -15,12 +15,12 @@
         <div class="card" style="margin-top:20px">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="<?= $post->url ?>">
-                        <?= $post->titre ?>
+                    <a href="<?= filter_var($post->url, FILTER_SANITIZE_SPECIAL_CHARS ); ?>">
+                        <?= filter_var($post->titre, FILTER_SANITIZE_SPECIAL_CHARS ); ?>
                     </a>
                 </h5>
-                <h6 class="card-subtitle mb-2 text-muted">date : <?= $post->date; ?></h6>
-                <p class="card-text"><?= $post->chapo; ?></p>
+                <h6 class="card-subtitle mb-2 text-muted">date : <?= filter_var($post->date, FILTER_SANITIZE_SPECIAL_CHARS ); ?></h6>
+                <p class="card-text"><?= filter_var($post->chapo, FILTER_SANITIZE_SPECIAL_CHARS ); ?></p>
             </div>
         </div>
 

@@ -2,13 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
 use App\App;
 
 class PostsController extends \App\Controller\Admin\AppController
 {
 
-    private $categories;
 
     public function __construct()
     {
@@ -28,40 +28,31 @@ class PostsController extends \App\Controller\Admin\AppController
     {
         
         $postTable = $this->loadModel('Post');
-        $categoriesTable = $this->loadModel('Category');
+        $data = $this->inputEscaping();
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
-
+        if (!empty($data)) {
+            $result = null;
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) ) {
 
                 $result = $postTable->create([
                     'titre' => $data['titre'],
                     'chapo' => $data['chapo'],
                     'contenu' => $data['contenu'],
-                    'autor' => $_SESSION['auth'],
+                    'autor' => Session::get('auth'),
                     'date' => date('Y-m-d H:i:s'),
 
                     'categorie_id' => 1
-    
-                ]);
 
-            } else {
-                $result = null;
+                ]);
             }
 
             $success = "Article ajouté avec succès";
             $error = "Erreur lors de l'ajout de l'article";
             $notification = $this->notify($result, $success, $error);
 
-            if ($result) {
-                $id = App::getInstance()->getDb()->lastInsertId();
-            }
-
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($data);
 
         isset($notification) 
             ? $this->render('admin.posts.new', compact('form', 'notification'))
@@ -78,13 +69,10 @@ class PostsController extends \App\Controller\Admin\AppController
         if(!$postTable->find(htmlentities($id))){
             $this->notFound();
         }
-           
-        $response = false;
 
-        if (!empty($_POST)) {
-
-            $data = $this->inputEscaping();
-
+        $data = $this->inputEscaping();
+        if (!empty($data)) {
+            $result = null;
             if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor']) ) {
 
                 $result = $postTable->update(htmlentities($id), [
@@ -94,9 +82,6 @@ class PostsController extends \App\Controller\Admin\AppController
                     'autor' => $data['autor'],
                     'date' => date('Y-m-d H:i:s')
                 ]);
-
-            } else {
-                $result = null;
             }
 
             $success = "Article modifié avec succès";
@@ -121,9 +106,9 @@ class PostsController extends \App\Controller\Admin\AppController
     public function delete()
     {
         $postTable = $this->loadModel('Post');
-        if (!empty($_POST)) {
 
-            $data = $this->inputEscaping();
+        $data = $this->inputEscaping();
+        if (isset($data['id'])) {
 
             $result = $postTable->delete($data['id']);
            

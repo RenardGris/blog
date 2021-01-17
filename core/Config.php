@@ -18,7 +18,7 @@ class Config
     //Singleton avec le fichier config/config.php
     public static function getInstance($file)
     {
-        if (is_null(self::$_instance)) {
+        if (self::$_instance === null) {
             self::$_instance = new Config($file);
         }
 

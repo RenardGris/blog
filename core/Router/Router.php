@@ -30,7 +30,7 @@ class Router {
 
     public function run(){
 
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        $requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 
         if(!isset($this->routes[$requestMethod])){
             return false;

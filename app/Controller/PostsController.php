@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Core\Auth\Session;
+use Core\HTML\BootstrapForm;
+
 class PostsController extends AppController
 {
 
@@ -16,8 +19,7 @@ class PostsController extends AppController
     {
 
         $posts = $this->loadModel('Post')->last();
-        $categories = $this->loadModel('Category')->all();
-        $this->render('posts.index', compact('posts', 'categories'));
+        $this->render('posts.index', compact('posts'));
 
     }
 
@@ -34,33 +36,12 @@ class PostsController extends AppController
         $commentary = new CommentsController();
         $commentaires = $commentary->indexForArticle($postId);
 
-        if(isset($_SESSION['auth'])){
-            $commentController = new Admin\CommentsController();
-            $formComment = $commentController->addComments($postId);
-            $_POST = [];
+        if(Session::get('auth') !== null){
+            $formComment = array(new BootstrapForm());
             $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
-
         } else {
            $this->render('posts.show', compact('article', 'commentaires')); 
         }
-
-    }
-
-    //affiche tous les articles de la catégorie selectionnée
-    public function categorie()
-    {
-
-        $categorie = $this->loadModel('Category')->find($_GET['id']);
-
-        if ($categorie === false) {
-            $this->notFound();
-        }
-
-        $articles = $this->loadModel('Post')->lastByCategorie($_GET['id']);
-
-        $categories = $this->loadModel('Category')->all();
-
-        $this->render('posts.categorie', compact('articles', 'categories', 'categorie'));
 
     }
 
