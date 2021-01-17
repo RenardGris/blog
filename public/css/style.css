@@ -161,9 +161,10 @@ img#logo {
 }
 
 .badgescard span {
-  font-size: 1.6em;
+  font-size: 20px;
   margin: 0 6px;
-  opacity: 0.6;
+  opacity: 0.5;
+  color: white;
 }
 
 .firstinfo {
@@ -281,6 +282,7 @@ img#logo {
 
 .modal-body input:focus,
 .modal-body textarea:focus {
+  background-color: transparent;
   border-bottom: 2px solid #4a4a4a;
   color: white;
   font-size: 20px;
@@ -294,6 +296,7 @@ img#logo {
 }
 
 .modal-body input:focus {
+  background-color: transparent;
   color: #f0f0f0;
   font-size: 20px;
   margin-top: 10px;
@@ -342,7 +345,7 @@ img#logo {
   font-size: 20px;
   display: inline-block;
   color: white;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .social_link > span {
@@ -377,14 +380,6 @@ img#logo {
     animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
   }
 
-  .badgescard {
-    width: 80%;
-    margin: 0 10%;
-    left: auto;
-    display: inline;
-    bottom: -70px;
-  }
-
   .firstinfo img {
     border-radius: 10%;
     width: 120px;
@@ -412,7 +407,7 @@ img#logo {
     }
 
     100% {
-      bottom: -42px;
+      bottom: -70px;
     }
   }
 
@@ -432,9 +427,15 @@ img#logo {
     }
   }
 
+  .badgescard {
+    width: 80%;
+    margin: 0 10%;
+    left: auto;
+    display: inline;
+  }
+
   .badgescard > a {
     text-decoration: none;
-    color: antiquewhite;
   }
 
   .badgescard > span {
@@ -442,13 +443,12 @@ img#logo {
   }
 
   .social_link {
-    font-size: 18px;
+    font-size: 20px;
     display: inline-block;
-    color: antiquewhite;
-    opacity: 1;
   }
 
   .social_link > span {
     font-size: 18px;
   }
+
 }
