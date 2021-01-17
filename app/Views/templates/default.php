@@ -22,8 +22,10 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>">Navbar</a>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <a class="navbar-brand" href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>">
+          <img src="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>public/css/logo.svg" id="nav_icon" />
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
