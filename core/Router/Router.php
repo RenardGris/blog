@@ -12,15 +12,43 @@ class Router {
         $this->url = $url;
     }
 
-    public function get($path, $callable, $name = null){
+    /**
+     *
+     * Add a get method URI
+     *
+     * @param string $path
+     * @param callable $callable
+     * @param null $name
+     */
+    public function get(string $path, callable $callable, $name = null)
+    {
         $this->add($path, $callable, $name, 'GET');
     }
 
-    public function post($path, $callable, $name = null){
+    /**
+     *
+     * add post method URI
+     *
+     * @param string $path
+     * @param callable $callable
+     * @param null $name
+     */
+    public function post(string $path, callable $callable, $name = null)
+    {
         $this->add($path, $callable, $name, 'POST');
     }
 
-    private function add($path, $callable, $name, $method){
+    /**
+     *
+     * Add URI to the routes property array with the specified method
+     *
+     * @param string $path
+     * @param callable $callable
+     * @param null|string $name
+     * @param string $method
+     */
+    private function add(string $path, callable $callable, ?string $name, string $method)
+    {
         $route = new Route($path,$callable);
         $this->routes[$method][] = $route;
         if($name){
@@ -28,7 +56,16 @@ class Router {
         }
     }
 
-    public function run(){
+    /**
+     *
+     * Check if the request URI is define in the registered URI
+     * if true, call the function from the url
+     * else, return false and generate a 404 error
+     *
+     * @return false|callable
+     */
+    public function run()
+    {
 
         $requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 

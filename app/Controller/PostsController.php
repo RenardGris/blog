@@ -14,7 +14,11 @@ class PostsController extends AppController
 
     }
 
-    //Affiche tous les articles
+    /**
+     * Index all the PostEntity
+     * return render in \Views\post\index
+     *
+     */
     public function index()
     {
 
@@ -23,24 +27,31 @@ class PostsController extends AppController
 
     }
 
-    //Affiche l'article selectionné
-    public function show($postId)
+
+    /**
+     * Show the selected PostEntity
+     * with its comments and new comment form if user is logged
+     * return render in \Views\post\show
+     *
+     * @param int $postId
+     */
+    public function show(int $postId)
     {
 
-        $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
+        $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));
 
-        if(!$article){
-            $this->notFound();
+        if(!$post){
+            $this->ressourceNotFound();
         }
 
-        $commentary = new CommentsController();
-        $commentaires = $commentary->indexForArticle($postId);
+        $commentController = new CommentsController();
+        $comments = $commentController->indexForArticle($postId);
 
         if(Session::get('auth') !== null){
             $formComment = array(new BootstrapForm());
-            $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
+            $this->render('posts.show', compact('post', 'comments', 'formComment'));
         } else {
-           $this->render('posts.show', compact('article', 'commentaires')); 
+           $this->render('posts.show', compact('post', 'comments'));
         }
 
     }

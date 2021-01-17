@@ -11,29 +11,28 @@ class Post extends Table
 
     /**
      *
-     * Recupere les derniers articles
+     * list all posts to newest to oldest
      *
      * @return array
      *
      */
-    public function last()
+    public function last(): array
     {
         return $this->query("
             SELECT articles.id, articles.titre, articles.chapo, articles.date
             FROM articles
-
             ORDER BY articles.date DESC
             ");
     }
 
     /**
      *
-     * Recupere un article (via son id) et sa categorie associée
-     * @param $id int
-     * @return \App\Entity\ArticleEntity
+     * get all data and comments from the post with id = $id
      *
+     * @param int $id
+     * @return object
      */
-    public function findWithCategorie($id)
+    public function findWithComments(int $id): object
     {
         return $this->query("
             SELECT articles.* , users.username as redacteur

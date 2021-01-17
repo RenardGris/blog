@@ -7,12 +7,25 @@ use Core\Entity\Entity;
 class PostEntity extends Entity
 {
 
-    public function getUrl()
+    /**
+     *
+     * generate url to access and read the PostEntity
+     *
+     * @return string
+     */
+    public function getUrl(): string
     {
         return 'posts/' . $this->id;
     }
 
-    public function getExtrait()
+    /**
+     *
+     * generate a summary for the PostEntity
+     * also include the link to read the entire post
+     *
+     * @return string
+     */
+    public function getExtrait(): string
     {
 
         $html = '<p>' . substr($this->contenu, 0, 150) . '...</p>';

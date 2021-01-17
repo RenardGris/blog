@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use Core\HTML\BootstrapForm;
-
 class CommentsController extends AppController
 {
 
@@ -13,13 +11,18 @@ class CommentsController extends AppController
 
     }
 
-    //affiche tous les commentaires d'un article
-    public function indexForArticle($postId)
+
+    /**
+     *
+     * index all comments from the post with id = $postId
+     *
+     * @param int $postId
+     * @return array
+     */
+    public function indexForArticle(int $postId): array
     {
 
-        $commentaires = $this->loadModel('Comment')->lastByArticle(htmlentities($postId));
-
-        return $commentaires;
+        return $this->loadModel('Comment')->lastByPost(htmlentities($postId));
     }
 
 }

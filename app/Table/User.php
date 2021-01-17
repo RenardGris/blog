@@ -10,10 +10,12 @@ class User extends Table
     protected $table = "users";
 
     /**
-     * recupère tous les utilisateurs (en attente de validation)
+     *
+     * list all the users waiting for validation
+     *
      * @return array
      */
-    public function unvalideUsers()
+    public function unvalidUsers(): array
     {
         return $this->query("
         SELECT *
@@ -22,7 +24,13 @@ class User extends Table
         [0]);
     }
 
-    public function valideUsers()
+    /**
+     *
+     * list all the valide users
+     *
+     * @return array
+     */
+    public function validUsers(): array
     {
         return $this->query("
         SELECT *

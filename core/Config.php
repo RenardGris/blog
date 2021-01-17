@@ -2,21 +2,36 @@
 
 namespace Core;
 
+/**
+ * Class Config
+ * Manage the credentials for connection to the database with the values in \config\config.php
+ *
+ */
 class Config
 {
 
+    /**
+     * @var array
+     */
     private $setting = [];
+    /**
+     * @var Config
+     */
     private static $_instance;
 
-    //recupere le dossier de configuration
     public function __construct($file)
     {
-
         $this->setting = require $file;
     }
 
-    //Singleton avec le fichier config/config.php
-    public static function getInstance($file)
+    /**
+     *
+     * Singleton
+     *
+     * @param $file
+     * @return Config
+     */
+    public static function getInstance($file): Config
     {
         if (self::$_instance === null) {
             self::$_instance = new Config($file);
@@ -26,7 +41,13 @@ class Config
 
     }
 
-    //getter recuperant la valeur de la clé passée en parametre
+    /**
+     *
+     * return the value of the $key in property setting
+     *
+     * @param mixed $key
+     * @return mixed|null
+     */
     public function get($key)
     {
         if (!isset($this->setting[$key])) {

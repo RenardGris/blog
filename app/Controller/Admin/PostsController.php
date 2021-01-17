@@ -4,9 +4,8 @@ namespace App\Controller\Admin;
 
 use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
-use App\App;
 
-class PostsController extends \App\Controller\Admin\AppController
+class PostsController extends AppController
 {
 
 
@@ -15,6 +14,14 @@ class PostsController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
+    /**
+     *
+     * Index all posts with notification if isset
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\index
+     *
+     * @param null|string $notification
+     */
     public function index($notification = null)
     {
         $posts = $this->loadModel('Post')->all();
@@ -24,6 +31,14 @@ class PostsController extends \App\Controller\Admin\AppController
             : $this->render('admin.posts.index', compact('posts'));
     }
 
+    /**
+     *
+     * Create new post
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\add
+     * with success alert if true, danger alert in case of error
+     *
+     */
     public function add()
     {
         
@@ -40,9 +55,6 @@ class PostsController extends \App\Controller\Admin\AppController
                     'contenu' => $data['contenu'],
                     'autor' => Session::get('auth'),
                     'date' => date('Y-m-d H:i:s'),
-
-                    'categorie_id' => 1
-
                 ]);
             }
 
@@ -60,14 +72,23 @@ class PostsController extends \App\Controller\Admin\AppController
 
     }
 
-    public function edit($id)
+    /**
+     *
+     * Edit the post with the id = $id
+     *
+     * return render in Core\Controller\Controller with \Views\admin\posts\edit
+     * with success alert if true, danger alert in case of error
+     *
+     * @param int $id
+     */
+    public function edit(int $id)
     {
         
         $postTable = $this->loadModel('Post');
         $userTable = $this->loadModel('User');
 
         if(!$postTable->find(htmlentities($id))){
-            $this->notFound();
+            $this->ressourceNotFound();
         }
 
         $data = $this->inputEscaping();
@@ -90,19 +111,25 @@ class PostsController extends \App\Controller\Admin\AppController
 
         }
 
-        $article = $postTable->find($id);
+        $post = $postTable->find($id);
+        $validUsers = $userTable->validUsers();
+        $author = $userTable->objList('id', 'username', $validUsers);
 
-        $valideUsers = $userTable->valideUsers();
-        $redacteur = $userTable->objList('id', 'username', $valideUsers);
-
-        $form = new BootstrapForm($article);
+        $form = new BootstrapForm($post);
 
         isset($notification) 
-        ? $this->render('admin.posts.edit', compact('redacteur', 'form', 'article', 'notification'))
-        : $this->render('admin.posts.edit', compact('redacteur', 'form', 'article'));
+        ? $this->render('admin.posts.edit', compact('author', 'form', 'post', 'notification'))
+        : $this->render('admin.posts.edit', compact('author', 'form', 'post'));
 
     }
 
+    /**
+     * Delete the specified post
+     *
+     * return render from $this->index
+     * with success alert if true, danger alert in case of error
+     *
+     */
     public function delete()
     {
         $postTable = $this->loadModel('Post');

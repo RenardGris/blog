@@ -2,15 +2,36 @@
 
 namespace Core\HTML;
 
+/**
+ * Class BootstrapForm
+ * Generate Bootstrap html code for forms
+ *
+ */
 class BootstrapForm extends Form
 {
 
-    protected function surround($html)
+    /**
+     *
+     * surround params with div
+     *
+     * @param string $html
+     * @return string
+     */
+    protected function surround(string $html): string
     {
         return "<div class=\"form-group\"> $html </div>";
     }
 
-    public function input($name, $label, $option = [])
+    /**
+     *
+     * Generate bootstrap input html code
+     *
+     * @param string $name
+     * @param string $label
+     * @param array $option
+     * @return string
+     */
+    public function input(string $name, string $label, $option = []): string
     {
 
         $type = isset($option['type']) ? $option['type'] : 'text';
@@ -34,12 +55,28 @@ class BootstrapForm extends Form
         return $this->surround($label . $input);
     }
 
-    public function submit($name)
+    /**
+     *
+     * Generate a bootstrap submit button
+     *
+     * @param string $name
+     * @return string
+     */
+    public function submit(string $name): string
     {
-        return $this->surround('<button type="submit" class="btn btn-primary">Envoyer</button>');
+        return $this->surround('<button type="submit" class="btn btn-primary">'.$name.'</button>');
     }
 
-    public function select($name, $label, $options)
+    /**
+     *
+     * generate a Bootstrap select input
+     *
+     * @param string $name
+     * @param string|null $label
+     * @param array $options
+     * @return string
+     */
+    public function select(string $name, ?string $label, array $options): string
     {
         if ($label != null) {
             $label = '<label>' . $label . '</label>';

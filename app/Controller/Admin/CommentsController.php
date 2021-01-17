@@ -2,12 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\App;
 use Core\Auth\Session;
 use Core\HTML\BootstrapForm;
-use App\Controller\ArticlesController;
 
-class CommentsController extends \App\Controller\Admin\AppController
+class CommentsController extends AppController
 {
 
     public function __construct()
@@ -15,12 +13,26 @@ class CommentsController extends \App\Controller\Admin\AppController
         parent::__construct();
     }
 
+    /**
+     *
+     * list all comments waiting for verification with notification alert if isset
+     *
+     * return render in Core\Controller\Controller with \Views\admin\comments\index
+     *
+     * @param null|string $notification
+     */
     public function index($notification = null)
     {
-        $commentaires = $this->loadModel('Comment')->unvalideComments();
-        $this->render('admin.comments.index', compact('commentaires', 'notification'));
+        $comments = $this->loadModel('Comment')->unvalidComments();
+        $this->render('admin.comments.index', compact('comments', 'notification'));
     }
 
+    /**
+     * Valid the specified comment
+     *
+     * return render from $this->index
+     * with notification according to result
+     */
     public function validate()
     {
 
@@ -41,6 +53,13 @@ class CommentsController extends \App\Controller\Admin\AppController
 
     }
 
+    /**
+     * Delete the specified comment
+     *
+     * return render from $this->index
+     * with success alert if true,
+     * else with danger alert
+     */
     public function delete()
     {
         $commentTable = $this->loadModel('Comment');
@@ -58,9 +77,18 @@ class CommentsController extends \App\Controller\Admin\AppController
 
     }
 
-    public function addComments($postId)
+    /**
+     *
+     * Create a new comment
+     *
+     * return render in \Core\Controller\Controller with \Views\posts\show
+     * with success alert if true, else danger alert
+     *
+     * @param int $postId
+     */
+    public function addComments(int $postId)
     {
-        $commentaireTable = $this->loadModel('Comment');
+        $commentTable = $this->loadModel('Comment');
 
         $data = $this->inputEscaping();
 
@@ -68,7 +96,7 @@ class CommentsController extends \App\Controller\Admin\AppController
             $result = null;
             if(!empty($data['titre']) && !empty($data['contenu']) ){
 
-                $result = $commentaireTable->create([
+                $result = $commentTable->create([
                     'titre' => $data['titre'],
                     'contenu' => $data['contenu'],
                     'article_id' => $postId,
@@ -84,19 +112,18 @@ class CommentsController extends \App\Controller\Admin\AppController
 
         $form = new BootstrapForm($data);
 
-        $ressources = [];
-        $ressources[0] = $form;
+        $resources = [];
+        $resources[0] = $form;
 
-        isset($notification) 
-            ? $ressources[1] = $notification
-            : $ressources;
+        if(isset($notification)){
+            $resources[1] = $notification;
+        }
 
-
-        $article = $this->loadModel('Post')->findWithCategorie(htmlentities($postId));
-        $comment = new \App\Controller\CommentsController();
-        $commentaires = $comment->indexForArticle($postId);
-        $formComment = $ressources;
-        $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
+        $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));
+        $commentController = new \App\Controller\CommentsController();
+        $comments = $commentController->indexForArticle($postId);
+        $formComment = $resources;
+        $this->render('posts.show', compact('post', 'comments', 'formComment'));
     }
 
 }

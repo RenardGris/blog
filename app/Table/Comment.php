@@ -11,28 +11,30 @@ class Comment extends Table
 
     /**
      *
-     * Recupere les commentaires d'un article
-     * @param $article_id int
-     * @return array
+     * List all comments from the post with id = $postId
      *
+     * @param $postId int
+     *
+     * @return array
      */
-    public function lastByArticle($article_id)
+    public function lastByPost(int $postId): array
     {
         return $this->query("
         SELECT commentaires.* , users.username as redacteur
         FROM commentaires
         LEFT JOIN users ON user_id = users.id
         WHERE article_id = ? AND valide = 1
-        ORDER BY id DESC", [$article_id]);
+        ORDER BY id DESC", [$postId]);
     }
 
     /**
      *
-     * recupère tous les commentaires (en attente de validation)
+     * List all comments waiting for validation
+     *
      * @return array
      *
      */
-    public function unvalideComments()
+    public function unvalidComments(): array
     {
         return $this->query("
         SELECT *

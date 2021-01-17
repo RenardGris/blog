@@ -9,6 +9,15 @@ use Core\Auth\Session;
 class AppController extends \App\Controller\AppController
 {
 
+    /**
+     * AppController constructor.
+     *
+     * check if user is logged and if has access right,
+     * if not, redirect with unauthorized error
+     *
+     * also check tokens if isset
+     *
+     */
     public function __construct()
     {
         parent::__construct();

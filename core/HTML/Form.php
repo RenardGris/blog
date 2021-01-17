@@ -2,6 +2,11 @@
 
 namespace Core\HTML;
 
+/**
+ * Class Form
+ * generate html for forms
+ *
+ */
 class Form
 {
 
@@ -13,16 +18,35 @@ class Form
         $this->data = $data;
     }
 
-    protected function surround($html)
+    /**
+     *
+     * surround the $html param with the value of surround property
+     *
+     * @param string $html
+     * @return string
+     */
+    protected function surround(string $html): string
     {
         return "<{$this->surround}> $html </{$this->surround}>";
     }
 
-    public function input($name, $label, $option = [])
+    /**
+     *
+     * generate input for forms
+     *
+     * @param string $name
+     * @param string $label
+     * @param array $option
+     * @return string
+     */
+    public function input(string $name, string $label, $option = []): string
     {
         $type = isset($option['type']) ? $option['type'] : 'text';
 
+        $label = '<label>' . $label . '</label>';
+
         return $this->surround(
+            $label .
             '<input
                 type="' . $type . '" name="' . $name . '"
                 value="' . $this->getValue($name) . '"
@@ -30,7 +54,13 @@ class Form
         );
     }
 
-    protected function getValue($index)
+    /**
+     * return the selected value from a select input in forms
+     *
+     * @param string $index
+     * @return mixed|null
+     */
+    protected function getValue(string $index)
     {
 
         if (is_object($this->data)) {
@@ -41,9 +71,16 @@ class Form
 
     }
 
-    public function submit($name)
+    /**
+     *
+     * Generate submit button for forms
+     *
+     * @param string $name
+     * @return string
+     */
+    public function submit(string $name): string
     {
-        return $this->surround('<button type="submit">Envoyer</button>');
+        return $this->surround('<button type="submit">'. $name .'</button>');
     }
 
 }

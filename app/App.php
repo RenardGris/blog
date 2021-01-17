@@ -8,13 +8,29 @@ use Core\Database\MysqlDb;
 class App
 {
 
+    /**
+     * @var string
+     */
     public $titre = "Blog PhPoo";
+    /**
+     * @var string
+     */
     public $linkPath;
-
+    /**
+     * @var MysqlDb
+     */
     private $dbInstance;
+    /**
+     * @var null|App
+     */
     private static $_instance;
 
-    public static function getInstance()
+    /**
+     * Singleton
+     *
+     * @return App
+     */
+    public static function getInstance(): ?App
     {
 
         if (self::$_instance === null) {
@@ -23,8 +39,14 @@ class App
         return self::$_instance;
     }
 
-    //Factorie pour les table ( classes )
-    public function getTable($name)
+    /**
+     *
+     * Factory for \Table class
+     *
+     * @param string $name
+     * @return mixed (\Table Class)
+     */
+    public function getTable(string $name)
     {
 
         $name = '\\App\\Table\\' . ucfirst($name);
@@ -32,7 +54,14 @@ class App
 
     }
 
-    public function getDb()
+    /**
+     *
+     * Singleton
+     * generate instance of MysqlDb with credentials in config files (\config\config.php)
+     *
+     * @return MysqlDb
+     */
+    public function getDb(): MysqlDb
     {
 
         $config = Config::getInstance(ROOT . '/config/config.php');
@@ -50,6 +79,10 @@ class App
 
     }
 
+    /**
+     * Overwriting params in php.ini
+     * and start php session
+     */
     public static function load()
     {
         ini_set( 'session.use_only_cookies',TRUE );
@@ -59,7 +92,13 @@ class App
         session_start();
     }
 
-    public function getBaseUrl()
+    /**
+     *
+     * define the path of the app
+     *
+     * @return string
+     */
+    public function getBaseUrl(): string
     {
         if($this->linkPath === null){
             $path = explode('index.php', filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL));

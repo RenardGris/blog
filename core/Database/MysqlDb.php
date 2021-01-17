@@ -4,6 +4,11 @@ namespace Core\Database;
 
 use \PDO;
 
+/**
+ * Class MysqlDb
+ * Manage Connection to Mysql database and SQL request with PDO
+ *
+ */
 class MysqlDb extends Database
 {
 
@@ -21,11 +26,13 @@ class MysqlDb extends Database
         $this->dbHost = $dbHost;
     }
 
-    private function getPDO()
+    /**
+     * @return PDO
+     */
+    private function getPDO(): PDO
     {
 
         if ($this->pdo === null) {
-            //$pdo = new PDO('mysql:dbname=blog;host=localhost', 'root', '');
             $option = array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_EMULATE_PREPARES => false
@@ -37,11 +44,21 @@ class MysqlDb extends Database
         return $this->pdo;
     }
 
-    public function query($statement, $className = null, $one = false)
+    /**
+     *
+     * Make PDO query
+     * that can return an object or directly instant of class specify in params $classname
+     *
+     * @param string $statement
+     * @param null|string $className
+     * @param bool $one
+     * @return array|false|mixed|\PDOStatement
+     */
+    public function query(string $statement, $className = null, $one = false)
     {
         $req = $this->getPDO()->query($statement);
 
-        if (
+        if(
             strpos($statement, "UPDATE") === 0 ||
             strpos($statement, "INSERT") === 0 ||
             strpos($statement, "DELETE") === 0
@@ -64,17 +81,23 @@ class MysqlDb extends Database
         return $datas;
     }
 
-    public function exec($statement)
-    {
-        $req = $this->getPDO()->exec($statement);
-        return $req;
-    }
 
-    public function prepare($statement, $attributes, $className = null, $one = false)
+    /**
+     *
+     * Make PDO prepare statement
+     * that can return an object or directly instant of class specify in params $classname
+     * according to the result of the statement
+     *
+     * @param string $statement
+     * @param array $attributes
+     * @param null|string $className
+     * @param bool $one
+     * @return array|bool|mixed
+     */
+    public function prepare(string $statement, array $attributes, $className = null, $one = false)
     {
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);
-        //$req->setFetchMode(PDO::FETCH_CLASS, $className);
 
         if (
             strpos($statement, "UPDATE") === 0 ||
@@ -96,11 +119,6 @@ class MysqlDb extends Database
             $datas = $req->fetchAll();
         }
         return $datas;
-    }
-
-    public function lastInsertId()
-    {
-        return $this->getPDO()->lastInsertId();
     }
 
 }

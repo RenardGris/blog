@@ -10,6 +10,13 @@ use \Core\HTML\BootstrapForm;
 class UsersController extends AppController
 {
 
+    /**
+     *
+     * used with the longin forms
+     * check the input credentials value with login function in class \Core\Auth\Auth
+     * if valid, redirect to the admin dashboard
+     * else, render the view with danger alert as notification
+     */
     public function login()
     {
 
@@ -36,6 +43,12 @@ class UsersController extends AppController
 
     }
 
+    /**
+     *
+     * disconnect the user
+     * destroy the session and redirect to main page
+     *
+     */
     public function logout()
     {
         if (Session::get('auth') !== null) {
@@ -45,6 +58,14 @@ class UsersController extends AppController
 
     }
 
+    /**
+     *
+     * Used with the register forms,
+     * if all needed data are valid, save data in user table database and generate a success alert
+     * else, generate danger alert
+     * return a the new render of the register forms
+     *
+     */
     public function register()
     {
 

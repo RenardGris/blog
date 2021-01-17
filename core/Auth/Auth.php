@@ -6,11 +6,15 @@ use Core\Database\Database;
 
 /**
  * Class Auth
- * Permet la gestion de l'authentification (connexion et droits d'accès) des utilisateurs 
+ * Manage authentication, access rights
+ *
  */
 class Auth
 {
 
+    /**
+     * @var Database
+     */
     private $db;
 
     public function __construct(Database $db)
@@ -20,12 +24,13 @@ class Auth
 
     /**
      *
-     * @params $username
-     * @params $password
-     * @return boolean
+     * verify the credentials and generate new session with user id and token if valid
      *
+     * @param string $username
+     * @param string $password
+     * @return boolean
      */
-    public function login($username, $password)
+    public function login(string $username, string $password): bool
     {
 
         $user = $this->db->prepare(
@@ -52,22 +57,23 @@ class Auth
 
     /**
      * 
-     * renvoie l'id de l'utilisateur si il est connecté
+     * return the id from the user if logged
+     *
      * @return int 
      */
-    public function logged()
+    public function logged(): int
     {
         return Session::get('auth');
     }
 
     /**
      *
-     * Permet de verifier si l'utilisateur dispose des droits d'accès
-     * 
-     * @params $userId int
+     * check access level needed for ressources
+     *
+     * @param int $userId
      * @return boolean
      */
-    public function authorized($userId)
+    public function authorized(int $userId): bool
     {
         $userRole = $this->db->prepare(
             'SELECT role FROM users WHERE id = ?',
@@ -86,31 +92,32 @@ class Auth
         }
 
         $ressource = explode( '/', filter_input(INPUT_GET, 'url'));
-
+        $right = 1;
         if($ressource[0] === 'admin'){
             $ressource = $ressource[1];
-            $ressource === 'dash' ? $right = 2 : $right = 3;
-        } else {
-            $right = 1;
+            $right = 3;
+
+            if($ressource === 'dash' || $ressource === 'posts' || $ressource === 'newpost'){
+                $right = 2;
+            }
+
         }
-        
-        if($acessRight){
-            if ($acessRight >= $right) {
+
+        if($acessRight && $acessRight >= $right){
                 return true;
-            } else {
-                return false;
-            }  
         }
+        return false;
 
     }
 
     /***
      *
-     * Genère un token aléatoire basé sur le timestamp de connexion
+     * Generate a random token for prevent csrf
+     *
      * @return string
      *
      */
-    public function getCSRFToken()
+    public function getCSRFToken(): string
     {
         return sha1(rand(42,619)*time());
     }

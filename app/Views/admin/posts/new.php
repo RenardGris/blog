@@ -1,7 +1,7 @@
 <form method="post">
     <?= filter_var($form->input('titre', 'titre de l\'article')); ?>
 
-    <?= isset($redacteur) ? filter_var($form->select('autor', 'Auteur', $redacteur)) : null; ?>
+    <?= isset($author) ? filter_var($form->select('autor', 'Auteur', $author)) : null; ?>
 
     <?= filter_var($form->input('chapo', 'Chapo', ['type' => 'textarea'])); ?>
 
