@@ -1,6 +1,8 @@
 <?php 
 
 if(isset($_SESSION['auth'])){
+    $form = $formComment[0];
+
 ?>
 
 <form method="post">
@@ -14,7 +16,10 @@ if(isset($_SESSION['auth'])){
 ?>
 
 <?php
-    if(isset($result) === true) {
-        echo '<div class="alert alert-success" style="margin-top:20px">Modifications sauvegardées</div>';
+    if(isset($formComment[1]) === true) {
+        $notification = $formComment[1];
+        if(isset($notification)){
+            require ROOT . 'app/Views/notification/show.php';
+        }
     }
 ?>

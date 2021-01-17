@@ -2,6 +2,8 @@
 
 namespace Core\Controller;
 
+use Core\HTML\BootstrapAlert;
+
 class Controller
 {
 
@@ -36,6 +38,22 @@ class Controller
         header("HTTP/1.0 401 Unauthorized");
         //header('location:index.php');
         die('nop');
+    }
+
+    public function getNotification($message, $type){
+
+        $alert = new BootstrapAlert;
+        return $alert->notification($message, $type);
+
+    }
+
+    public function notify($result , $successAnswer, $errorAnswer ){
+
+        isset($result) && $result === true 
+            ? $answer = $this->getNotification($successAnswer, 'success')
+            : $answer = $this->getNotification($errorAnswer, 'danger');
+
+        return $answer;
     }
 
 }

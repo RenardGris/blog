@@ -10,7 +10,7 @@
   <div class="card-body">
 
   <div>
-  <?php isset($form) ? require 'add.php' : null; ?>
+  <?php isset($formComment) ? require 'add.php' : null; ?>
   </div>
 
 
@@ -21,6 +21,7 @@
 
     <div class="card" id="commentsListing"> 
         <h5 class="card-title"><?= $commentaire->titre ?></h5>
+        <h5 class="card-title"><?= $commentaire->redacteur ?></h5>
         <p class="card-text"> <?= $commentaire->contenu ?></p>
     </div>
 

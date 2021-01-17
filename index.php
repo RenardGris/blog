@@ -82,7 +82,7 @@ $router->get('/admin/posts/:id', function($id){
     $controller->edit($id);
 });
 
-$router->post('/admin/posts/delete', function(){
+$router->post('/admin/dash', function(){
     $controller = new Controller\Admin\PostsController;
     $controller->delete();
 });

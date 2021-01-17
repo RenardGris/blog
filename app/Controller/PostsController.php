@@ -5,9 +5,9 @@ namespace App\Controller;
 class PostsController extends AppController
 {
 
-    public function __constrcut()
+    public function __construct()
     {
-        parent::construct();
+        parent::__construct();
 
     }
 
@@ -35,10 +35,10 @@ class PostsController extends AppController
         $commentaires = $commentary->indexForArticle($postId);
 
         if(isset($_SESSION['auth'])){
-            $addComment = new Admin\CommentsController();
-            $form = $addComment->addComments($postId);
+            $commentController = new Admin\CommentsController();
+            $formComment = $commentController->addComments($postId);
 
-            $this->render('posts.show', compact('article', 'commentaires', 'form'));
+            $this->render('posts.show', compact('article', 'commentaires', 'formComment'));
 
         } else {
            $this->render('posts.show', compact('article', 'commentaires')); 
