@@ -38,9 +38,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>Posts">Post <span class="sr-only">(current)</span></a>
             </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>login"> Login <span class="sr-only">(current)</span></a>
-          </li>
+            <?php
+            if(Core\Auth\Session::get('auth') === null)
+            {
+            ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?=filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>login"> Login <span class="sr-only">(current)</span></a>
+              </li>
+            <?php
+            }
+            ?>
         </ul>
       </div>
     </nav>
