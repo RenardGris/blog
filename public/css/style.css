@@ -84,7 +84,7 @@ footer {
 }
 
 .btn_modal {
-  border: 1px solid #6A6A6A;
+  border: 1px solid #6a6a6a;
   background-color: white;
 }
 
@@ -142,7 +142,7 @@ img#logo {
   display: block;
   width: 185px;
   height: 300px;
-  background: #6A6A6A;
+  background: #6a6a6a;
   position: absolute;
   animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
 }
@@ -150,7 +150,7 @@ img#logo {
 .badgescard {
   padding: 10px 20px;
   border-radius: 3px;
-  background-color: #6A6A6A;
+  background-color: #6a6a6a;
   color: #fff;
   width: 480px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -190,13 +190,13 @@ img#logo {
 
 .firstinfo .profileinfo h3 {
   font-size: 1.2em;
-  color: #6A6A6A;
+  color: #6a6a6a;
   font-style: italic;
 }
 
 .firstinfo .profileinfo p.bio {
   padding: 10px 0;
-  color: #5A5A5A;
+  color: #5a5a5a;
   line-height: 1.2;
   font-style: initial;
 }
@@ -237,13 +237,13 @@ img#logo {
 
 .modal-content {
   background-color: #1d2227;
-  color: #9B9B9B;
+  color: #9b9b9b;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
 }
 
 .modal-body > form {
-  border: 1px solid #4A4A4A;
+  border: 1px solid #4a4a4a;
   padding: 30px;
 }
 
@@ -255,7 +255,7 @@ img#logo {
 }
 
 .modal-body > form > div > label {
-  color: #9B9B9B;
+  color: #9b9b9b;
   cursor: text;
   font-size: 15px;
   line-height: 20px;
@@ -272,7 +272,7 @@ img#logo {
 .modal-body textarea {
   background-color: transparent;
   border: 0;
-  border-bottom: 2px solid #4A4A4A;
+  border-bottom: 2px solid #4a4a4a;
   color: white;
   font-size: 20px;
   letter-spacing: 1px;
@@ -289,7 +289,7 @@ img#logo {
 
 .modal-body input:focus,
 .modal-body textarea:focus {
-  border-bottom: 2px solid #4A4A4A;
+  border-bottom: 2px solid #4a4a4a;
   color: white;
   font-size: 20px;
   letter-spacing: 1px;
@@ -303,7 +303,7 @@ img#logo {
 
 
 .modal-body input:focus {
-  color: #F0F0F0;
+  color: #f0f0f0;
   font-size: 20px;
   margin-top: 10px;
   -moz-transform: translateY(-60px);
@@ -316,8 +316,8 @@ img#logo {
 #btn_contact_post,
 #btn_contact_close {
   background: transparent;
-  color: #F0F0F0;
-  border: 2px solid #F0F0F0;
+  color: #f0f0f0;
+  border: 2px solid #f0f0f0;
   font-size: 15px;
   letter-spacing: 2px;
   padding: 10px;
@@ -367,7 +367,7 @@ img#logo {
 
   .cardId {
     width: 100%;
-    background-color: #6A6A6A;
+    background-color: #6a6a6a;
   }
 
 
