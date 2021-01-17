@@ -53,7 +53,7 @@ footer {
 
 #comment_form {
   height: 400px;
-  margin: 0 !important;
+  margin: 0;
   padding: 0;
 }
 
@@ -132,7 +132,7 @@ img#logo {
   padding: 20px;
   border-radius: 3px;
   background-color: white;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -153,7 +153,7 @@ img#logo {
   background-color: #6A6A6A;
   color: #fff;
   width: 480px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   position: absolute;
   z-index: -1;
   left: 10px;
@@ -163,7 +163,7 @@ img#logo {
 
 .badgescard span {
   font-size: 1.6em;
-  margin: 0px 6px;
+  margin: 0 6px;
   opacity: 0.6;
 }
 
@@ -181,7 +181,7 @@ img#logo {
 }
 
 .firstinfo .profileinfo {
-  padding: 0px 20px;
+  padding: 0 20px;
 }
 
 .firstinfo .profileinfo h1 {
@@ -195,7 +195,7 @@ img#logo {
 }
 
 .firstinfo .profileinfo p.bio {
-  padding: 10px 0px;
+  padding: 10px 0;
   color: #5A5A5A;
   line-height: 1.2;
   font-style: initial;
@@ -208,7 +208,7 @@ img#logo {
   }
   100% {
     opacity: 1;
-    bottom: 0px;
+    bottom: 0;
   }
 }
 
@@ -289,8 +289,6 @@ img#logo {
 
 .modal-body input:focus,
 .modal-body textarea:focus {
-  background-color: transparent;
-  border: 0;
   border-bottom: 2px solid #4A4A4A;
   color: white;
   font-size: 20px;
@@ -326,7 +324,7 @@ img#logo {
   text-transform: uppercase;
   cursor: pointer;
   display: inline-block;
-  margin: 15px 0px;
+  margin: 15px 0;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
@@ -342,7 +340,7 @@ img#logo {
 #btn_contact_close:hover,
 #btn_contact_close:focus,
 #btn_contact_post:hover,
-btn_contact_post:focus {
+#btn_contact_post:focus {
   background-color: white;
   color: #333333;
 }
@@ -366,7 +364,7 @@ btn_contact_post:focus {
 
 
 @media screen and (max-width: 550px) {
-    
+
   .cardId {
     width: 100%;
     background-color: #6A6A6A;
@@ -421,7 +419,7 @@ btn_contact_post:focus {
     }
     100% {
       opacity: 1;
-      bottom: 0px;
+      bottom: 0;
     }
   }
 
@@ -439,13 +437,13 @@ btn_contact_post:focus {
       opacity: 0;
       transform: rotate(0deg);
       left: 500px;
-      top: 0px;
+      top: 0;
     }
     100% {
       transform: rotate(-40deg);
-      left: 0px;
-      right: 0px;
-      top: 0px;
+      left: 0;
+      right: 0;
+      top: 0;
     }
   }
 
