@@ -42,39 +42,39 @@
     <div class="col-sm-12 col-md-6 col-lg-8">
 
         <div id="comment_slide">
-        <?php
-        if (!$comments) {
-            ?>
-            <div class="media mb-4">
-                <div class="media-body">
-              <span>
-                Oh non ! Il n'y a aucun commentaire pour cet article.
-              </span>
-                </div>
-            </div>
-
             <?php
-        } else {
-            foreach ($comments as $comment) {
+            if (!$comments) {
                 ?>
                 <div class="media mb-4">
                     <div class="media-body">
-                        <h5 class="mt-0">Commentateur
-                            : <?= filter_var($comment->redacteur, FILTER_SANITIZE_STRING) ?></h5>
-                        <p>
-                            titre : <?= filter_var($comment->titre, FILTER_SANITIZE_STRING) ?>
-                        </p>
-                        <span>
-                            <?= filter_var($comment->contenu, FILTER_SANITIZE_STRING) ?>
-                        </span>
+              <span>
+                Oh non ! Il n'y a aucun commentaire pour cet article.
+              </span>
                     </div>
                 </div>
-                <hr>
 
                 <?php
+            } else {
+                foreach ($comments as $comment) {
+                    ?>
+                    <div class="media mb-4">
+                        <div class="media-body">
+                            <h5 class="mt-0">Commentateur
+                                : <?= filter_var($comment->redacteur, FILTER_SANITIZE_STRING) ?></h5>
+                            <p>
+                                titre : <?= filter_var($comment->titre, FILTER_SANITIZE_STRING) ?>
+                            </p>
+                            <span>
+                            <?= filter_var($comment->contenu, FILTER_SANITIZE_STRING) ?>
+                        </span>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <?php
+                }
             }
-        }
-        ?>
+            ?>
         </div>
     </div>
 

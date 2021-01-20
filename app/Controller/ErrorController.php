@@ -13,7 +13,6 @@ class ErrorController extends AppController
     public function __construct()
     {
         parent::__construct();
-
     }
 
     /**
@@ -24,10 +23,9 @@ class ErrorController extends AppController
      *
      * @param string $error
      */
-    public function index (string $error) {
-
+    public function index(string $error)
+    {
         $this->render('error.index', compact('error'));
-
     }
 
 }

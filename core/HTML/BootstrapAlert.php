@@ -15,7 +15,7 @@ class BootstrapAlert
      */
     public function notification(string $message, string $type): string
     {
-        return  '<div class="alert alert-' .$type. '" alert-dismissible">' .$message. '</div>';
+        return '<div class="alert alert-' . $type . '" alert-dismissible">' . $message . '</div>';
     }
 
 }

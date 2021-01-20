@@ -35,11 +35,9 @@ class CommentsController extends AppController
      */
     public function validate()
     {
-
         $commentTable = $this->loadModel('Comment');
         $data = $this->inputEscaping();
         if (!empty($data['id'])) {
-
             $result = $commentTable->update($data['id'], [
                 'valide' => 1,
             ]);
@@ -50,7 +48,6 @@ class CommentsController extends AppController
 
             return $this->index($notification);
         }
-
     }
 
     /**
@@ -65,16 +62,14 @@ class CommentsController extends AppController
         $commentTable = $this->loadModel('Comment');
         $data = $this->inputEscaping();
         if (!empty($data['id'])) {
-
             $result = $commentTable->delete($data['id']);
-            
+
             $success = "Commentaire supprimé avec succès";
             $error = "Erreur lors de la suppression du commentaire";
             $notification = $this->notify($result, $success, $error);
-            
+
             return $this->index($notification);
         }
-
     }
 
     /**
@@ -94,8 +89,7 @@ class CommentsController extends AppController
 
         if (!empty($data)) {
             $result = null;
-            if(!empty($data['titre']) && !empty($data['contenu']) ){
-
+            if (!empty($data['titre']) && !empty($data['contenu'])) {
                 $result = $commentTable->create([
                     'titre' => $data['titre'],
                     'contenu' => $data['contenu'],
@@ -107,7 +101,6 @@ class CommentsController extends AppController
             $success = "Commentaire en cours de vérification";
             $error = "Erreur lors de l'ajout du commentaire";
             $notification = $this->notify($result, $success, $error);
-           
         }
 
         $form = new BootstrapForm($data);
@@ -115,7 +108,7 @@ class CommentsController extends AppController
         $resources = [];
         $resources[0] = $form;
 
-        if(isset($notification)){
+        if (isset($notification)) {
             $resources[1] = $notification;
         }
 

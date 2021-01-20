@@ -20,7 +20,7 @@ class Session
      */
     public function __construct()
     {
-        if(empty($this->session)){
+        if (empty($this->session)) {
             $this->session = &$_SESSION;
         }
         return $this->session;

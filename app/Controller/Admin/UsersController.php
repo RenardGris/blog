@@ -41,22 +41,19 @@ class UsersController extends \App\Controller\Admin\AppController
      */
     public function validate()
     {
-
         $userTable = $this->loadModel('User');
         $data = $this->inputEscaping();
         if (isset($data['id'])) {
-
             $result = $userTable->update($data['id'], [
                 'validate' => 1,
             ]);
-            
+
             $success = "Utilisateur validé avec succès";
             $error = "Erreur lors de la validation de l'utilisateur";
             $notification = $this->notify($result, $success, $error);
 
             return $this->index($notification);
         }
-
     }
 
     /**
@@ -70,7 +67,6 @@ class UsersController extends \App\Controller\Admin\AppController
         $data = $this->inputEscaping();
 
         if (isset($data['id'])) {
-
             $result = $userTable->delete($data['id']);
 
             $success = "Utilisateur supprimé avec succès";
@@ -79,7 +75,6 @@ class UsersController extends \App\Controller\Admin\AppController
 
             return $this->index($notification);
         }
-
     }
 
     /**
@@ -93,7 +88,6 @@ class UsersController extends \App\Controller\Admin\AppController
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
-
             $result = $userTable->update($data['id'], [
                 'role' => $data['role'],
             ]);

@@ -38,12 +38,11 @@
                 <hr>
                 <h4>Commentaires</h4>
 
-                <?php require ROOT . '/app/Views/comments/index.php'; ?>
+                <?php
+                require ROOT . '/app/Views/comments/index.php'; ?>
             </div>
 
         </div>
-
-
 
 
     </div>

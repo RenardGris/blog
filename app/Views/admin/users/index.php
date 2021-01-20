@@ -16,16 +16,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($unvalidateUsers as $user) : ?>
+                    <?php
+                    foreach ($unvalidateUsers as $user) : ?>
 
                         <tr>
                             <td><?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
                             <td><?= filter_var($user->username, FILTER_SANITIZE_STRING); ?></td>
                             <td>
 
-                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/validate" method="post" style="display:inline">
-                                    <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
-                                    <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING) ?>" />
+                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(),
+                                    FILTER_SANITIZE_STRING); ?>admin/users/validate" method="post"
+                                      style="display:inline">
+                                    <input type="hidden" name="id"
+                                           value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>"/>
+                                    <input type="hidden" name="token"
+                                           value="<?= filter_var(Core\Auth\Session::get('token'),
+                                               FILTER_SANITIZE_STRING) ?>"/>
                                     <button type="submit"
                                             class="btn btn-primary"
                                     >
@@ -34,9 +40,13 @@
                                 </form>
 
 
-                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/delete" method="post" style="display:inline">
-                                    <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
-                                    <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
+                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(),
+                                    FILTER_SANITIZE_STRING); ?>admin/users/delete" method="post" style="display:inline">
+                                    <input type="hidden" name="id"
+                                           value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>"/>
+                                    <input type="hidden" name="token"
+                                           value="<?= filter_var(Core\Auth\Session::get('token'),
+                                               FILTER_SANITIZE_STRING); ?>"/>
                                     <button type="submit"
                                             class="btn btn-danger"
                                     >
@@ -47,7 +57,8 @@
                             </td>
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach; ?>
                     </tbody>
 
                 </table>
@@ -63,17 +74,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($users as $user) : ?>
+                    <?php
+                    foreach ($users as $user) : ?>
 
                         <tr>
                             <td><?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
                             <td><?= filter_var($user->username, FILTER_SANITIZE_STRING); ?></td>
 
                             <td>
-                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/users/changeRole" method="post" style="display:inline">
-                                    <input type="hidden" name="id" value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
-                                    <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING) ?>" />
-                                    <?= filter_var($form[$user->id]->select('role', null, ['commentateur' => 'commentateur', 'redacteur' => 'redacteur', 'admin' => 'admin'])); ?>
+                                <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(),
+                                    FILTER_SANITIZE_STRING); ?>admin/users/changeRole" method="post"
+                                      style="display:inline">
+                                    <input type="hidden" name="id"
+                                           value="<?= filter_var($user->id, FILTER_SANITIZE_NUMBER_INT); ?>"/>
+                                    <input type="hidden" name="token"
+                                           value="<?= filter_var(Core\Auth\Session::get('token'),
+                                               FILTER_SANITIZE_STRING) ?>"/>
+                                    <?= filter_var($form[$user->id]->select('role', null, [
+                                        'commentateur' => 'commentateur',
+                                        'redacteur' => 'redacteur',
+                                        'admin' => 'admin'
+                                    ])); ?>
                                     <button type="submit"
                                             class="btn btn-primary"
                                     >
@@ -83,7 +104,8 @@
                             </td>
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach; ?>
                     </tbody>
 
                 </table>

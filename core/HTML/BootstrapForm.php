@@ -33,7 +33,6 @@ class BootstrapForm extends Form
      */
     public function input(string $name, string $label, $option = []): string
     {
-
         $type = isset($option['type']) ? $option['type'] : 'text';
 
         $label = '<label>' . $label . '</label>';
@@ -42,7 +41,7 @@ class BootstrapForm extends Form
             $input = '<textarea
                         name="' . $name . '"
                         class="form-control">'
-            . $this->getValue($name) .
+                . $this->getValue($name) .
                 '</textarea>';
         } else {
             $input = '<input type="' . $type . '"
@@ -50,7 +49,6 @@ class BootstrapForm extends Form
             value="' . $this->getValue($name) . '"
             class="form-control"
         >';
-
         }
         return $this->surround($label . $input);
     }
@@ -64,7 +62,7 @@ class BootstrapForm extends Form
      */
     public function submit(string $name): string
     {
-        return $this->surround('<button type="submit" class="btn btn-primary">'.$name.'</button>');
+        return $this->surround('<button type="submit" class="btn btn-primary">' . $name . '</button>');
     }
 
     /**
@@ -85,7 +83,6 @@ class BootstrapForm extends Form
         $input = '<select name="' . $name . '" class="form-control">';
 
         foreach ($options as $k => $v) {
-
             $attrib = $k == $this->getValue($name) ? ' selected' : '';
             $input .= "<option value=" . $k . " $attrib>" . $v . "</options>";
         }
@@ -93,7 +90,6 @@ class BootstrapForm extends Form
         $input .= '</select>';
 
         return $this->surround($label . $input);
-
     }
 
 }

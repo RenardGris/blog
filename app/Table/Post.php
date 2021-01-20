@@ -39,7 +39,6 @@ class Post extends Table
             FROM articles
             LEFT JOIN users ON autor = users.id
             WHERE articles.id = ?", [$id], true);
-
     }
 
 }

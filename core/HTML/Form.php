@@ -62,13 +62,11 @@ class Form
      */
     protected function getValue(string $index)
     {
-
         if (is_object($this->data)) {
             return $this->data->$index;
         }
 
         return isset($this->data[$index]) ? $this->data[$index] : null;
-
     }
 
     /**
@@ -80,7 +78,7 @@ class Form
      */
     public function submit(string $name): string
     {
-        return $this->surround('<button type="submit">'. $name .'</button>');
+        return $this->surround('<button type="submit">' . $name . '</button>');
     }
 
 }

@@ -38,7 +38,6 @@ class Config
         }
 
         return self::$_instance;
-
     }
 
     /**
