@@ -11,7 +11,7 @@ class App
     /**
      * @var string
      */
-    public $titre = "Blog PhPoo";
+    public $titre = "Blog Renard Gris";
     /**
      * @var string
      */

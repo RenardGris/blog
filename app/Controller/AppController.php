@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Core\Controller\Controller;
 use App\App;
+use Core\HTML\BootstrapForm;
 
 class AppController extends Controller
 {
@@ -60,5 +61,51 @@ class AppController extends Controller
         header('location:'. App::getInstance()->getBaseUrl() .'notfound');
 
     }
+
+
+    public function home(){
+
+
+        $data = $this->inputEscaping();
+
+        if (!empty($data)) {
+            $result = null;
+            if( !empty($data['firstname']) &&
+                !empty($data['lastname']) &&
+                !empty($data['email']) &&
+                !empty($data['content']) &&
+                !empty($data['subject']) ){
+
+                $contact =  "Nom : " . $data['lastname'] . "\r\n" .
+                            "Prenom : " . $data['firstname'] . "\r\n" .
+                            "Mail : " . $data['email'];
+                $content = "Contact : " . $contact . "\r\n".
+                           "Message : " .$data['content'];
+                $header = "From: ". $data['email'] . "\r\n";
+
+                $result = mail(
+                    "rick.srz4@gmail.com",
+                    $data['subject'],
+                    $content,
+                    $header
+                );
+
+            }
+
+            $success = "C'est dans la boite !";
+            $error = "Une erreur est survenue veuillez réessayer ultérieurement";
+            $notification = $this->notify($result, $success, $error);
+        }
+
+        $form = new BootstrapForm();
+
+        if(isset($notification)){
+            $this->render('home.home', compact('form', 'notification'));
+        } else {
+            $this->render('home.home', compact('form'));
+        }
+
+    }
+
 
 }
