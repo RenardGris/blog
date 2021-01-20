@@ -4,15 +4,15 @@ this project was made during my apprenticeship in programming.
 
 this blog is composed of two parts, one visible part for visitors or users who have right to comments posts, 
     this first part content : 
-        - home page, with contact forms.
-        - posts page (listing of all posts)
-        - page for one post (Only logged users can comments, these comments must be validate by an admin)
-        - login and register page (registration request must be validated by an admin)
+  - home page, with contact forms.
+  - posts page (listing of all posts)
+  - page for one post (Only logged users can comments, these comments must be validate by an admin)
+  - login and register page (registration request must be validated by an admin)
 
 and another one part as an admin pannel only reachable for users with the access right.
     This second part has also visibility on :
-        - admin pannel page, listing all posts with actions (new, edit, delete)
-        - an access to user rights management and comments awaiting fort validation (only reachable for admin)
+  - admin pannel page, listing all posts with actions (new, edit, delete)
+  - an access to user rights management and comments awaiting fort validation (only reachable for admin)
 
 I have also the next requirement for this project :
   - Only use of php in oop.
@@ -68,10 +68,10 @@ return array(
 );
 ```
 
- 4. Use the blog.sql file to create tables and with data
+ 4. Use the blog.sql file to create tables with data
 
  5. if you want to send mail from the contact form, configure your php.ini to configure your smtp
 
 ## What's next ?
 
-This project will be updated with new features, new design and more configurables options in future
+This project will be updated with new features, new design and more configurable options in future
