@@ -55,7 +55,7 @@ class Security
      */
     public static function sanitizer(string $type, $value){
 
-        $inputs = [ FILTER_SANITIZE_STRING => ['firstname','lastname','username','password','titre','chapo','contenu','role'],
+        $inputs = [ FILTER_SANITIZE_STRING => ['firstname','lastname','username','password','titre','chapo','contenu','role', 'content', 'subject'],
                     FILTER_SANITIZE_NUMBER_INT => ['article_id', 'user_id', 'id', 'autor'],
                     FILTER_SANITIZE_EMAIL => ['email']
                 ];
