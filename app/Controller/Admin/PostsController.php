@@ -83,7 +83,7 @@ class PostsController extends AppController
         $userTable = $this->loadModel('User');
 
         if (!$postTable->find(htmlentities($id))) {
-            $this->ressourceNotFound();
+            $this->redirectTo("HTTP/1.0 404 Not Found", "notfound");
         }
 
         $data = $this->inputEscaping();

@@ -37,7 +37,7 @@ class PostsController extends AppController
         $post = $this->loadModel('Post')->findWithComments(htmlentities($postId));
 
         if (!$post) {
-            $this->ressourceNotFound();
+            $this->redirectTo("HTTP/1.0 404 Not Found", "notfound");
         }
 
         $commentController = new CommentsController();

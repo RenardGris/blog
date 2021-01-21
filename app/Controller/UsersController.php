@@ -29,7 +29,7 @@ class UsersController extends AppController
             $notification = $this->notify(null, null, $error);
 
             if ($auth->login($data['username'], $data['password'])) {
-                header('Location: admin/dash');
+                $this->redirectTo("HTTP/1.0 303 See Other", "admin/dash");
             }
         }
 
@@ -50,7 +50,7 @@ class UsersController extends AppController
     {
         if (Session::get('auth') !== null) {
             session_destroy();
-            header('Location: ./ ');
+            $this->redirectTo("HTTP/1.0 303 See Other", "");
         }
     }
 
