@@ -105,8 +105,7 @@ class PostsController extends AppController
         }
 
         $post = $postTable->find($id);
-        $validUsers = $userTable->validUsers();
-        $author = $userTable->objList('id', 'username', $validUsers);
+        $author = $userTable->objList('id', 'username', $userTable->getAuthors());
 
         $form = new BootstrapForm($post);
 

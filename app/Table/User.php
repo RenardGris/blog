@@ -39,5 +39,18 @@ class User extends Table
             [1]);
     }
 
+    /**
+     *
+     * list all the users with authors right
+     * @return array
+     */
+    public function getAuthors(): array
+    {
+        return $this->query("
+        SELECT *
+        FROM users
+        WHERE (users.role = ? OR users.role = ?)",
+            ["admin", "redacteur"]);
+    }
 
 }
