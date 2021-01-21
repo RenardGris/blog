@@ -46,20 +46,20 @@ class AppController extends Controller
     {
         if (filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING)) {
             if ($this->checkTokenCSRF() !== true) {
-                header('Location: ' . App::getInstance()->getBaseUrl() . 'unauthorized');
+                $this->redirectTo("HTTP/1.0 401 Unauthorized", "unauthorized");
             }
         }
     }
 
     /**
-     * in case the request ressource is undefined
-     * redirect with notfound error msg
-     *
+     * Wrapper for redirection
+     * @param $http string
+     * @param $location string
      */
-    protected function ressourceNotFound()
+    public function redirectTo($http, $location)
     {
-        header("HTTP/1.0 404 Not Found");
-        header('location:' . App::getInstance()->getBaseUrl() . 'notfound');
+        header($http);
+        header('location:' . App::getInstance()->getBaseUrl() . $location);
     }
 
 

@@ -26,7 +26,7 @@ class AppController extends \App\Controller\AppController
         $auth = new Auth($app->getDb());
 
         if (!$auth->logged() || !$auth->authorized(Session::get('auth'))) {
-            header('Location: ' . $app->getBaseUrl() . 'unauthorized');
+            $this->redirectTo("HTTP/1.0 401 Unauthorized", "unauthorized");
         }
 
         $this->hasToken();

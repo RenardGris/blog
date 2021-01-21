@@ -30,9 +30,9 @@ class Post extends Table
      * get all data and comments from the post with id = $id
      *
      * @param int $id
-     * @return object
+     * @return object|boolean
      */
-    public function findWithComments(int $id): object
+    public function findWithComments(int $id)
     {
         return $this->query("
             SELECT articles.* , users.username as redacteur

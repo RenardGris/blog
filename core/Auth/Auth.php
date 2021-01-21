@@ -57,9 +57,9 @@ class Auth
      *
      * return the id from the user if logged
      *
-     * @return int
+     * @return int|null
      */
-    public function logged(): int
+    public function logged(): ?int
     {
         return Session::get('auth');
     }
