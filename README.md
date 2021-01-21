@@ -2,28 +2,28 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/54d28ef99cbd4cfe963dad034cd2a51a)](https://app.codacy.com/gh/RenardGris/blog?utm_source=github.com&utm_medium=referral&utm_content=RenardGris/blog&utm_campaign=Badge_Grade)
 
-this project was made during my apprenticeship in programming. 
+this project was made during my apprenticeship in programming.
 
-this blog is composed of two parts, one visible part for visitors or users who have right to comments posts, 
-    this first part content : 
-  - home page, with contact forms.
-  - posts page (listing of all posts)
-  - page for one post (Only logged users can comments, these comments must be validate by an admin)
-  - login and register page (registration request must be validated by an admin)
+this blog is composed of two parts, one visible part for visitors or users who have right to comments posts,
+this first part content :
+*   home page, with contact forms.
+*   posts page (listing of all posts)
+*   page for one post (Only logged users can comments, these comments must be validate by an admin)
+*   login and register page (registration request must be validated by an admin)
 
 and another one part as an admin pannel only reachable for users with the access right.
-    This second part has also visibility on :
-  - admin pannel page, listing all posts with actions (new, edit, delete)
-  - an access to user rights management and comments awaiting fort validation (only reachable for admin)
+This second part has also visibility on :
+*   admin pannel page, listing all posts with actions (new, edit, delete)
+*   an access to user rights management and comments awaiting fort validation (only reachable for admin)
 
 I have also the next requirement for this project :
-  - Only use of php in oop.
-  - Only my own code 
-  - Full documentation
-  - Security check (no csrf, xss, session hijacking, sql injection)
-  - PSR
-  - Code Quality with Codacy (Quality standard needed)
-  - responsive design
+*   Only use of php in oop.
+*   Only my own code.
+*   Full documentation.
+*   Security check (no csrf, xss, session hijacking, sql injection)
+*   PSR.
+*   Code Quality with Codacy (Quality standard needed)
+*   Responsive design
 
 ## Required server configuration
 
@@ -42,24 +42,24 @@ In case you can't use ssl, you can also remove the next lines from App.php (if y
     }
 ```
 
-You also need to configure your server for permit the rewrite rules. 
-And in case you use nginx you will need to convert the .htacess file in this project. 
+You also need to configure your server for permit the rewrite rules.
+If you use nginx you will need to convert the .htacess file in this project.
 
 Your server will need to send mail if you want to use the contact form on home page, so you have to configure your smtp for this feature.
 
 ## Installation
 
- 1. get code from the repository 
+1.  get code from the repository
 ```git
 git clone https://github.com/RenardGris/blog.git
 ```
 
- 2. install dependency (this only content pdo)
-```
+2.  install dependency
+```composer
 composer install
 ```
 
- 3. In config folder, the config file is used to store your sgbd credential in an array
+3.  In config folder, the config file is used to store your dbms credential in an array
 
 ```php 
 return array(
@@ -70,10 +70,9 @@ return array(
 );
 ```
 
- 4. Use the blog.sql file to create tables with data
+4.  Use the blog.sql file to create tables with data
+5.  if you want to send mail from the contact form, configure your php.ini to configure your smtp
 
- 5. if you want to send mail from the contact form, configure your php.ini to configure your smtp
+## What's next
 
-## What's next ?
-
-This project will be updated with new features, new design and more configurable options in future
+This project will be updated with new features, new design and more configurable options in future 
