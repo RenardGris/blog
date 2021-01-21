@@ -16,7 +16,7 @@
                             Contacter
                         </button>
                         <a href="<?= filter_var(App\App::getInstance()->getBaseUrl(),
-                            FILTER_SANITIZE_STRING); ?>public/cv.pdf" download="cv.pdf">
+                            FILTER_SANITIZE_STRING); ?>public/cv.pdf" target="_blank">
                             <button type="button" class="btn_modal">
                                 Curriculum
                             </button>
