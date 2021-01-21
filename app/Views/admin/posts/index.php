@@ -20,7 +20,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($posts as $post) : ?>
+                <?php
+                foreach ($posts as $post) : ?>
 
                     <tr>
                         <td><?= filter_var($post->id, FILTER_SANITIZE_NUMBER_INT); ?></td>
@@ -34,9 +35,12 @@
                             </a>
 
 
-                            <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(), FILTER_SANITIZE_STRING);?>admin/dash" method="post" style="display:inline">
-                                <input type="hidden" name="id" value="<?= filter_var($post->id, FILTER_SANITIZE_NUMBER_INT); ?>" />
-                                <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
+                            <form action="<?= filter_var(App\App::getInstance()->getBaseUrl(),
+                                FILTER_SANITIZE_STRING); ?>admin/dash" method="post" style="display:inline">
+                                <input type="hidden" name="id"
+                                       value="<?= filter_var($post->id, FILTER_SANITIZE_NUMBER_INT); ?>"/>
+                                <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'),
+                                    FILTER_SANITIZE_STRING); ?>"/>
                                 <button type="submit"
                                         class="btn btn-danger margin_15"
                                 >
@@ -47,7 +51,8 @@
                         </td>
                     </tr>
 
-                <?php endforeach; ?>
+                <?php
+                endforeach; ?>
                 </tbody>
 
             </table>

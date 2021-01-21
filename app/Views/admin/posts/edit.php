@@ -17,7 +17,8 @@
 
                         <?= filter_var($form->input('contenu', 'Contenu', ['type' => 'textarea'])); ?>
 
-                        <input type="hidden" name="token" value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>" />
+                        <input type="hidden" name="token"
+                               value="<?= filter_var(Core\Auth\Session::get('token'), FILTER_SANITIZE_STRING); ?>"/>
 
                         <button class="btn btn-primary">Editer</button>
                         <a href="../dash" class="btn btn-info">Retour aux articles</a>

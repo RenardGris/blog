@@ -31,13 +31,13 @@ class MysqlDb extends Database
      */
     private function getPDO(): PDO
     {
-
         if ($this->pdo === null) {
             $option = array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_EMULATE_PREPARES => false
             );
-            $pdo = new PDO('mysql:dbname=' . $this->dbName . ';host=' . $this->dbHost, $this->dbUser, $this->dbPass, $option);
+            $pdo = new PDO('mysql:dbname=' . $this->dbName . ';host=' . $this->dbHost, $this->dbUser, $this->dbPass,
+                $option);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         }
@@ -58,7 +58,7 @@ class MysqlDb extends Database
     {
         $req = $this->getPDO()->query($statement);
 
-        if(
+        if (
             strpos($statement, "UPDATE") === 0 ||
             strpos($statement, "INSERT") === 0 ||
             strpos($statement, "DELETE") === 0

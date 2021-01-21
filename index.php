@@ -1,10 +1,12 @@
 <?php
+
 //define('ROOT', dirname(__DIR__));
 $path = filter_input(INPUT_SERVER, 'SCRIPT_FILENAME');
 $path = explode('index.php', $path);
 define('ROOT', $path[0]);
 
 require 'vendor/autoload.php';
+
 use Core\Router;
 use App\Controller;
 use App\App;
@@ -13,124 +15,117 @@ App::load();
 
 $router = new Router\Router(filter_input(INPUT_GET, 'url'));
 
-$router->get('/', function(){
+$router->get('/', function () {
     $controller = new Controller\AppController();
     $controller->home();
 });
-$router->post('/', function(){
+$router->post('/', function () {
     $controller = new Controller\AppController();
     $controller->home();
 });
-$router->get('/posts', function(){
+$router->get('/posts', function () {
     $controller = new Controller\PostsController;
     $controller->index();
 });
-$router->post('/posts/:id', function($id){
+$router->post('/posts/:id', function ($id) {
     $controller = new Controller\Admin\CommentsController;
     $controller->addComments($id);
 });
 
-$router->get('/posts/:id', function($id){
-
+$router->get('/posts/:id', function ($id) {
     $controller = new Controller\PostsController;
     $controller->show($id);
-
 });
 
 //Login
-$router->get('/login', function(){
+$router->get('/login', function () {
     $controller = new Controller\UsersController;
     $controller->login();
 });
 
-$router->post('/login', function(){
+$router->post('/login', function () {
     $controller = new Controller\UsersController;
     $controller->login();
 });
 
-$router->post('/logout', function(){
+$router->post('/logout', function () {
     $controller = new Controller\UsersController;
     $controller->logout();
 });
 
-$router->get('/register', function(){
+$router->get('/register', function () {
     $controller = new Controller\UsersController;
     $controller->register();
 });
 
-$router->post('/register', function(){
+$router->post('/register', function () {
     $controller = new Controller\UsersController;
     $controller->register();
 });
-
-
-
-
 
 
 //ADMIN
-$router->get('/admin/dash', function(){
+$router->get('/admin/dash', function () {
     $controller = new Controller\Admin\PostsController;
     $controller->index();
 });
 
-$router->get('/admin/posts', function(){
+$router->get('/admin/posts', function () {
     $controller = new Controller\Admin\PostsController;
     $controller->index();
 });
 
-$router->get('/admin/posts/:id', function($id){
+$router->get('/admin/posts/:id', function ($id) {
     $controller = new Controller\Admin\PostsController;
     $controller->edit($id);
 });
 
-$router->post('/admin/dash', function(){
+$router->post('/admin/dash', function () {
     $controller = new Controller\Admin\PostsController;
     $controller->delete();
 });
 
-$router->post('/admin/posts/:id', function($id){
+$router->post('/admin/posts/:id', function ($id) {
     $controller = new Controller\Admin\PostsController;
     $controller->edit($id);
 });
 
-$router->get('/admin/newpost', function(){
+$router->get('/admin/newpost', function () {
     $controller = new Controller\Admin\PostsController;
     $controller->add();
 });
 
-$router->post('/admin/newpost', function(){
+$router->post('/admin/newpost', function () {
     $controller = new Controller\Admin\PostsController;
     $controller->add();
 });
 
-$router->get('/admin/users', function(){
+$router->get('/admin/users', function () {
     $controller = new Controller\Admin\UsersController;
     $controller->index();
-
 });
 
-$router->post('/admin/users/:slug', function($slug){
+$router->post('/admin/users/:slug', function ($slug) {
     $controller = new Controller\Admin\UsersController;
     $controller->$slug();
 });
 
-$router->get('/admin/comments', function(){
+$router->get('/admin/comments', function () {
     $controller = new Controller\Admin\CommentsController;
     $controller->index();
 });
 
-$router->post('/admin/comments/:slug', function($slug){
+$router->post('/admin/comments/:slug', function ($slug) {
     $controller = new Controller\Admin\CommentsController;
     $controller->$slug();
 });
 
-$router->get('/unauthorized', function(){
+$router->get('/unauthorized', function () {
     $controller = new Controller\ErrorController;
     $controller->index('Accès non authorisé');
 });
 
-$router->get('/notfound', function(){
+$router->get('/notfound', function () {
     $controller = new Controller\ErrorController;
     $controller->index("Désolé cette page n'a pas été trouvée");
 });
@@ -138,7 +133,7 @@ $router->get('/notfound', function(){
 
 $run = $router->run();
 
-if($run === false){
+if ($run === false) {
     header('Location:' . App::getInstance()->getBaseUrl() . 'notfound');
 }
 

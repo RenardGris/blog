@@ -32,7 +32,6 @@ class Auth
      */
     public function login(string $username, string $password): bool
     {
-
         $user = $this->db->prepare(
             'SELECT * FROM users WHERE username = ?',
             [$username],
@@ -52,14 +51,13 @@ class Auth
         }
 
         return false;
-
     }
 
     /**
-     * 
+     *
      * return the id from the user if logged
      *
-     * @return int 
+     * @return int
      */
     public function logged(): int
     {
@@ -91,23 +89,21 @@ class Auth
             $acessRight = 3;
         }
 
-        $ressource = explode( '/', filter_input(INPUT_GET, 'url'));
+        $ressource = explode('/', filter_input(INPUT_GET, 'url'));
         $right = 1;
-        if($ressource[0] === 'admin'){
+        if ($ressource[0] === 'admin') {
             $ressource = $ressource[1];
             $right = 3;
 
-            if($ressource === 'dash' || $ressource === 'posts' || $ressource === 'newpost'){
+            if ($ressource === 'dash' || $ressource === 'posts' || $ressource === 'newpost') {
                 $right = 2;
             }
-
         }
 
-        if($acessRight && $acessRight >= $right){
-                return true;
+        if ($acessRight && $acessRight >= $right) {
+            return true;
         }
         return false;
-
     }
 
     /***
@@ -119,7 +115,7 @@ class Auth
      */
     public function getCSRFToken(): string
     {
-        return sha1(rand(42,619)*time());
+        return sha1(rand(42, 619) * time());
     }
 
 

@@ -21,7 +21,7 @@ class User extends Table
         SELECT *
         FROM users
         WHERE validate = ?",
-        [0]);
+            [0]);
     }
 
     /**
@@ -36,7 +36,7 @@ class User extends Table
         SELECT *
         FROM users
         WHERE validate = ?",
-        [1]);
+            [1]);
     }
 
 

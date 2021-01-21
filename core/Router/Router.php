@@ -2,13 +2,15 @@
 
 namespace Core\Router;
 
-class Router {
+class Router
+{
 
     private $url;
     private $routes = [];
     private $namedRoutes = [];
 
-    public function __construct($url){
+    public function __construct($url)
+    {
         $this->url = $url;
     }
 
@@ -49,9 +51,9 @@ class Router {
      */
     private function add(string $path, callable $callable, ?string $name, string $method)
     {
-        $route = new Route($path,$callable);
+        $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
-        if($name){
+        if ($name) {
             $this->namedRoutes[$name] = $route;
         }
     }
@@ -66,22 +68,18 @@ class Router {
      */
     public function run()
     {
-
         $requestMethod = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 
-        if(!isset($this->routes[$requestMethod])){
+        if (!isset($this->routes[$requestMethod])) {
             return false;
-        } 
+        }
 
-        foreach($this->routes[$requestMethod] as $route){
-
-            if($route->match($this->url)){
+        foreach ($this->routes[$requestMethod] as $route) {
+            if ($route->match($this->url)) {
                 return $route->call();
             }
-
         }
         return false;
-
     }
 
 }

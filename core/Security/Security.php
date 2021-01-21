@@ -21,10 +21,10 @@ class Security
     {
         $data = [];
 
-        if(filter_input_array(INPUT_POST) !== null){
-            foreach(filter_input_array(INPUT_POST) as $key => $input){
+        if (filter_input_array(INPUT_POST) !== null) {
+            foreach (filter_input_array(INPUT_POST) as $key => $input) {
                 $cleanInput = strip_tags($input);
-                $sanitizedInput = Security::sanitizer($key,$cleanInput);
+                $sanitizedInput = Security::sanitizer($key, $cleanInput);
                 $data[$key] = htmlspecialchars($sanitizedInput, ENT_QUOTES);
             }
             return $data;
@@ -39,7 +39,8 @@ class Security
      */
     public static function csrf(): bool
     {
-        if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING) === filter_var(Session::get('token'), FILTER_SANITIZE_STRING )){
+        if (filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING) === filter_var(Session::get('token'),
+                FILTER_SANITIZE_STRING)) {
             return true;
         }
         return false;
@@ -53,16 +54,28 @@ class Security
      * @param mixed $value
      * @return mixed
      */
-    public static function sanitizer(string $type, $value){
+    public static function sanitizer(string $type, $value)
+    {
+        $inputs = [
+            FILTER_SANITIZE_STRING => [
+                'firstname',
+                'lastname',
+                'username',
+                'password',
+                'titre',
+                'chapo',
+                'contenu',
+                'role',
+                'content',
+                'subject'
+            ],
+            FILTER_SANITIZE_NUMBER_INT => ['article_id', 'user_id', 'id', 'autor'],
+            FILTER_SANITIZE_EMAIL => ['email']
+        ];
 
-        $inputs = [ FILTER_SANITIZE_STRING => ['firstname','lastname','username','password','titre','chapo','contenu','role', 'content', 'subject'],
-                    FILTER_SANITIZE_NUMBER_INT => ['article_id', 'user_id', 'id', 'autor'],
-                    FILTER_SANITIZE_EMAIL => ['email']
-                ];
-
-        foreach ($inputs as $key => $genders){
-            foreach ($genders as $gender){
-                if($gender === $type){
+        foreach ($inputs as $key => $genders) {
+            foreach ($genders as $gender) {
+                if ($gender === $type) {
                     return $value = filter_var($value, $key);
                 }
             }

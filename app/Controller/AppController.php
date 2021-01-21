@@ -42,9 +42,10 @@ class AppController extends Controller
      * else, continue
      *
      */
-    protected function hasToken(){
-        if(filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING)){
-            if($this->checkTokenCSRF() !== true) {
+    protected function hasToken()
+    {
+        if (filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING)) {
+            if ($this->checkTokenCSRF() !== true) {
                 header('Location: ' . App::getInstance()->getBaseUrl() . 'unauthorized');
             }
         }
@@ -58,30 +59,27 @@ class AppController extends Controller
     protected function ressourceNotFound()
     {
         header("HTTP/1.0 404 Not Found");
-        header('location:'. App::getInstance()->getBaseUrl() .'notfound');
-
+        header('location:' . App::getInstance()->getBaseUrl() . 'notfound');
     }
 
 
-    public function home(){
-
-
+    public function home()
+    {
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
             $result = null;
-            if( !empty($data['firstname']) &&
+            if (!empty($data['firstname']) &&
                 !empty($data['lastname']) &&
                 !empty($data['email']) &&
                 !empty($data['content']) &&
-                !empty($data['subject']) ){
-
-                $contact =  "Nom : " . $data['lastname'] . "\r\n" .
-                            "Prenom : " . $data['firstname'] . "\r\n" .
-                            "Mail : " . $data['email'];
-                $content = "Contact : " . $contact . "\r\n".
-                           "Message : " .$data['content'];
-                $header = "From: ". $data['email'] . "\r\n";
+                !empty($data['subject'])) {
+                $contact = "Nom : " . $data['lastname'] . "\r\n" .
+                    "Prenom : " . $data['firstname'] . "\r\n" .
+                    "Mail : " . $data['email'];
+                $content = "Contact : " . $contact . "\r\n" .
+                    "Message : " . $data['content'];
+                $header = "From: " . $data['email'] . "\r\n";
 
                 $result = mail(
                     "rick.srz4@gmail.com",
@@ -89,7 +87,6 @@ class AppController extends Controller
                     $content,
                     $header
                 );
-
             }
 
             $success = "C'est dans la boite !";
@@ -99,12 +96,11 @@ class AppController extends Controller
 
         $form = new BootstrapForm();
 
-        if(isset($notification)){
+        if (isset($notification)) {
             $this->render('home.home', compact('form', 'notification'));
         } else {
             $this->render('home.home', compact('form'));
         }
-
     }
 
 

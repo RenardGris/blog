@@ -30,7 +30,6 @@ class Controller
         require $this->viewPath . str_replace('.', '/', $view) . '.php';
         $content = ob_get_clean();
         require $this->viewPath . 'templates/' . $this->template . '.php';
-
     }
 
     /**
@@ -43,10 +42,8 @@ class Controller
      */
     public function getNotification(string $message, string $type): string
     {
-
         $alert = new BootstrapAlert;
         return $alert->notification($message, $type);
-
     }
 
     /**
@@ -59,9 +56,8 @@ class Controller
      * @param string|null $errorAnswer
      * @return string|null
      */
-    public function notify(?bool $result , ?string $successAnswer, ?string $errorAnswer): ?string
+    public function notify(?bool $result, ?string $successAnswer, ?string $errorAnswer): ?string
     {
-
         $result === true
             ? $answer = $this->getNotification($successAnswer, 'success')
             : $answer = $this->getNotification($errorAnswer, 'danger');

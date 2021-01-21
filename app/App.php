@@ -32,7 +32,6 @@ class App
      */
     public static function getInstance(): ?App
     {
-
         if (self::$_instance === null) {
             self::$_instance = new App();
         }
@@ -48,10 +47,8 @@ class App
      */
     public function getTable(string $name)
     {
-
         $name = '\\App\\Table\\' . ucfirst($name);
         return new $name($this->getDb());
-
     }
 
     /**
@@ -63,7 +60,6 @@ class App
      */
     public function getDb(): MysqlDb
     {
-
         $config = Config::getInstance(ROOT . '/config/config.php');
 
         if ($this->dbInstance === null) {
@@ -72,11 +68,9 @@ class App
                 $config->get('db_pass'),
                 $config->get('db_host')
             );
-
         }
 
         return $this->dbInstance;
-
     }
 
     /**
@@ -85,10 +79,10 @@ class App
      */
     public static function load()
     {
-        ini_set( 'session.use_only_cookies',TRUE );
-        ini_set( 'session.cookie_lifetime', 900 );
-        ini_set( 'session.cookie_httponly', TRUE );
-        ini_set( 'session.cookie_secure', true );
+        ini_set('session.use_only_cookies', true);
+        ini_set('session.cookie_lifetime', 900);
+        ini_set('session.cookie_httponly', true);
+        ini_set('session.cookie_secure', true);
         session_start();
     }
 
@@ -100,10 +94,9 @@ class App
      */
     public function getBaseUrl(): string
     {
-        if($this->linkPath === null){
+        if ($this->linkPath === null) {
             $path = explode('index.php', filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL));
             $this->linkPath = $path[0];
-
         }
         return $this->linkPath;
     }

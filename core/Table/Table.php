@@ -31,7 +31,6 @@ class Table
      */
     public function __construct(Database $db)
     {
-
         $this->db = $db;
 
         if ($this->table === null) {
@@ -39,7 +38,6 @@ class Table
             $className = end($parts);
             $this->table = strtolower($className) . 's';
         }
-
     }
 
     /**
@@ -55,7 +53,6 @@ class Table
      */
     public function query($statement, $attributes = null, $one = false)
     {
-
         $className = get_class($this) . 'Entity';
         $className = str_replace('Table', 'Entity', $className);
 
@@ -64,7 +61,6 @@ class Table
         } else {
             return $this->db->query($statement, $className, $one);
         }
-
     }
 
     /**
@@ -101,7 +97,6 @@ class Table
      */
     public function update($id, $params)
     {
-
         $reqParts = [];
         $attributes = [];
         foreach ($params as $k => $v) {
@@ -134,7 +129,6 @@ class Table
             $result[$v->$key] = $v->$value;
         }
         return $result;
-
     }
 
     /**
@@ -146,7 +140,6 @@ class Table
      */
     public function create($params)
     {
-
         $reqParts = [];
         $attributes = [];
         foreach ($params as $k => $v) {

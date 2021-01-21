@@ -26,7 +26,7 @@ class PostsController extends AppController
     {
         $posts = $this->loadModel('Post')->all();
 
-        isset($notification) 
+        isset($notification)
             ? $this->render('admin.posts.index', compact('posts', 'notification'))
             : $this->render('admin.posts.index', compact('posts'));
     }
@@ -41,14 +41,12 @@ class PostsController extends AppController
      */
     public function add()
     {
-        
         $postTable = $this->loadModel('Post');
         $data = $this->inputEscaping();
 
         if (!empty($data)) {
             $result = null;
-            if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) ) {
-
+            if (!empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu'])) {
                 $result = $postTable->create([
                     'titre' => $data['titre'],
                     'chapo' => $data['chapo'],
@@ -61,15 +59,13 @@ class PostsController extends AppController
             $success = "Article ajouté avec succès";
             $error = "Erreur lors de l'ajout de l'article";
             $notification = $this->notify($result, $success, $error);
-
         }
 
         $form = new BootstrapForm($data);
 
-        isset($notification) 
+        isset($notification)
             ? $this->render('admin.posts.new', compact('form', 'notification'))
             : $this->render('admin.posts.new', compact('form'));
-
     }
 
     /**
@@ -83,19 +79,17 @@ class PostsController extends AppController
      */
     public function edit(int $id)
     {
-        
         $postTable = $this->loadModel('Post');
         $userTable = $this->loadModel('User');
 
-        if(!$postTable->find(htmlentities($id))){
+        if (!$postTable->find(htmlentities($id))) {
             $this->ressourceNotFound();
         }
 
         $data = $this->inputEscaping();
         if (!empty($data)) {
             $result = null;
-            if( !empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor']) ) {
-
+            if (!empty($data['titre']) && !empty($data['chapo']) && !empty($data['contenu']) && !empty($data['autor'])) {
                 $result = $postTable->update(htmlentities($id), [
                     'titre' => $data['titre'],
                     'chapo' => $data['chapo'],
@@ -108,7 +102,6 @@ class PostsController extends AppController
             $success = "Article modifié avec succès";
             $error = "Erreur lors de la modification de l'article";
             $notification = $this->notify($result, $success, $error);
-
         }
 
         $post = $postTable->find($id);
@@ -117,10 +110,9 @@ class PostsController extends AppController
 
         $form = new BootstrapForm($post);
 
-        isset($notification) 
-        ? $this->render('admin.posts.edit', compact('author', 'form', 'post', 'notification'))
-        : $this->render('admin.posts.edit', compact('author', 'form', 'post'));
-
+        isset($notification)
+            ? $this->render('admin.posts.edit', compact('author', 'form', 'post', 'notification'))
+            : $this->render('admin.posts.edit', compact('author', 'form', 'post'));
     }
 
     /**
@@ -136,16 +128,14 @@ class PostsController extends AppController
 
         $data = $this->inputEscaping();
         if (isset($data['id'])) {
-
             $result = $postTable->delete($data['id']);
-           
+
             $success = "Article supprimé avec succès";
             $error = "Erreur lors de la suppression de l'article";
             $notification = $this->notify($result, $success, $error);
 
             return $this->index($notification);
         }
-
     }
 
 }
